@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using class02.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace class02.Controllers
         [Route("Get")]
         public IActionResult Get() 
         {
+            //..................
+
             return Ok();
         }
 
@@ -89,6 +92,58 @@ namespace class02.Controllers
         {
             return Ok();
         }
+
+        // POST
+
+        //route: https://localhost:5001/api/orders/post
+        [HttpPost]
+        [Route("post")]
+        public IActionResult Post() 
+        {
+            return Ok();
+        }
+
+
+        //route: https://localhost:5001/api/orders/PostWithBody
+        [HttpPost]
+        [Route("PostWithBody")]
+        public IActionResult PostWithBody([FromBody] Order order)
+        {
+            // call some order service
+            // write the order in to the database...
+            return Ok(order);
+        }
+
+        //route: https://localhost:5001/api/orders/PostWithHeader
+        [HttpPost]
+        [Route("PostWithHeader")]
+        public IActionResult PostWithHeader([FromHeader] string token)
+        {
+            return Ok(token);
+        }
+
+
+        //route: https://localhost:5001/api/orders/PostWithEverything/1?userId=2
+        [HttpPost]
+        [Route("PostWithEverything/{id}")]
+        public IActionResult PostWithEverything([FromRoute] int id, 
+                                                [FromQuery] int userId,     
+                                                [FromHeader] string token,
+                                                [FromBody] Order order) 
+        {
+            return Ok();
+        }
+
+        //PUT
+
+        //route: https://localhost:5001/api/orders/Put/1
+        [HttpPut]
+        [Route("Put/{id}")]
+        public IActionResult Put([FromRoute] int id, [FromBody] Order order) 
+        {
+            return Ok();
+        }
+
 
     }
 }
