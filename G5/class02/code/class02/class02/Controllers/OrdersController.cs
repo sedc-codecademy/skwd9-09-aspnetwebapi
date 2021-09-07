@@ -20,8 +20,6 @@ namespace class02.Controllers
         [Route("Get")]
         public IActionResult Get() 
         {
-            //..................
-
             return Ok();
         }
 
