@@ -12,6 +12,8 @@ namespace class02.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
+        // GET
+
         //route: https://localhost:5001/api/orders/get
         [HttpGet]
         [Route("Get")]
@@ -62,6 +64,31 @@ namespace class02.Controllers
             return Ok();
         }
 
+        // DELETE
+
+        //route: https://localhost:5001/api/orders/delete
+        [HttpDelete]
+        [Route("delete")]
+        public IActionResult Delete() 
+        {
+            return Ok();
+        }
+
+        //route: https://localhost:5001/api/orders/delete
+        [HttpGet]
+        [Route("delete")]
+        public IActionResult DeleteGet()
+        {
+            return Ok();
+        }
+
+        //route: https://localhost:5001/api/orders/delete/5?name=viktor
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public IActionResult DeleteWithParameters([FromRoute] int id, [FromQuery] string name) 
+        {
+            return Ok();
+        }
 
     }
 }
