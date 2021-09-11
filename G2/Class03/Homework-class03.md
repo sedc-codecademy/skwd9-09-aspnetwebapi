@@ -14,11 +14,9 @@
 
 7. Add GET method that returns one book by filtering by author and title (use query string parameters)
 
-8. Add GET method that returns the value of the Content-Type header of the HTTP request
+10. Add POST method that adds new book to the list of books (use the FromBody attribute)
 
-9. Add POST method that adds new book to the list of books (use the FromBody attribute)
-
-10. Add POST method that accepts list of  books from the body of the request and returns their titles as a list of strings.
+11. Add POST method that accepts list of  books from the body of the request and returns their titles as a list of strings.
 
 Try out PostMan and Swagger
 
