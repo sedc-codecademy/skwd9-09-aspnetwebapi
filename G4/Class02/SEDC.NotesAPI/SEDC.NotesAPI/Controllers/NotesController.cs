@@ -37,13 +37,13 @@ namespace SEDC.NotesAPI.Controllers
             try
             {
                 // 400 if the request is wrong (example there is no chance to have a book with index -56)
-                if(id < 0)
+                if (id < 0)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, "ID cannot be lower than zero.");
                 }
 
                 // 404 if the request is OK but the resource cannot be found
-                if(id >= StaticDB.SimpleNotes.Count)
+                if (id >= StaticDB.SimpleNotes.Count)
                 {
                     return StatusCode(StatusCodes.Status404NotFound);
                 }
@@ -54,7 +54,7 @@ namespace SEDC.NotesAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Server Error");
             }
-            
+
         }
 
         // Multiple parameters in url
