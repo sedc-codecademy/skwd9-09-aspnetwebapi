@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI", "SEDC.NotesAPI\SEDC.NotesAPI.csproj", "{4708695E-C6E3-4BAC-9FBE-184E48D180A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4708695E-C6E3-4BAC-9FBE-184E48D180A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4708695E-C6E3-4BAC-9FBE-184E48D180A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4708695E-C6E3-4BAC-9FBE-184E48D180A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4708695E-C6E3-4BAC-9FBE-184E48D180A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97232384-E16E-423C-83C0-D01EDBD81882}
+	EndGlobalSection
+EndGlobal
