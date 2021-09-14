@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace class02
+namespace Class02.Homework_soluition
 {
     public class Startup
     {
@@ -25,10 +25,15 @@ namespace class02
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //swagger
-            services.AddSwaggerGen();
-
             services.AddControllers();
+
+            //CORS
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,16 +44,12 @@ namespace class02
                 app.UseDeveloperExceptionPage();
             }
 
-            //swagger
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //CORS
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
