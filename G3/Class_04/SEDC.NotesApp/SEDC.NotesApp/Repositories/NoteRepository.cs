@@ -27,26 +27,12 @@ namespace SEDC.NotesApp.Repositories
         public void Remove(int id)
         {
             Note note = StaticDb.Notes.SingleOrDefault(note => note.Id == id);
-
-            //if (note != null)
-            //{
-            //    StaticDb.Notes.Remove(note);
-            //}
-
-            if (note == null)
-            {
-                throw new Exception("No such note!");
-            }
             StaticDb.Notes.Remove(note);
         }
 
         public void Update(Note entity)
         {
             Note note = StaticDb.Notes.SingleOrDefault(note => note.Id == entity.Id);
-            if (note == null)
-            {
-                throw new Exception("No such note");
-            }
             int idxOfExistingNote = StaticDb.Notes.IndexOf(note);
             StaticDb.Notes[idxOfExistingNote] = entity;
         }

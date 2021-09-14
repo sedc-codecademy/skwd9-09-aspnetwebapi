@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SEDC.NotesApp.Models.DbModels;
+using SEDC.NotesApp.Repositories;
+using SEDC.NotesApp.Services;
+using SEDC.NotesApp.Services.Interfaces;
 
 namespace SEDC.NotesApp
 {
@@ -26,6 +30,12 @@ namespace SEDC.NotesApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // register repositories
+            services.AddTransient<IRepository<Note>, NoteRepository>();
+
+            // register services
+            services.AddTransient<INoteService, NoteService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
