@@ -5,7 +5,7 @@ Create an API that keeps and manages your favorite movies. It should have the op
 * create new movie
 * get movie by id
 * get all movies 
-* get movie by genre
+* get movies by genre
 
 A movie contains:
 * title
