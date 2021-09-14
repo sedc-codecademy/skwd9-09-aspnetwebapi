@@ -142,6 +142,29 @@ namespace class02.Controllers
             return Ok();
         }
 
+        //RESPONSES
+        [HttpGet]
+        [Route("Responses")]
+        public IActionResult Responses() 
+        {
+            return new EmptyResult();
+
+            var order = new Order();
+
+            return Ok(order);
+            return Ok("The user is created!");
+
+            return BadRequest();
+            return BadRequest(new { message = "Try again" });
+
+            return NotFound();
+            return NotFound(new { message = "Try again", suggestion = 1 });
+
+            return StatusCode(StatusCodes.Status200OK, new { message = "Try again", suggestion = 1 });
+            return StatusCode(StatusCodes.Status400BadRequest);
+            return StatusCode(StatusCodes.Status404NotFound);
+            return StatusCode(StatusCodes.Status401Unauthorized);
+        }
 
     }
 }
