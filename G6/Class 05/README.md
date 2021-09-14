@@ -11,4 +11,4 @@ A movie contains:
 * title
 * description
 * year
-* genre
+* genre (class)
