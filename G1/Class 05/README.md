@@ -19,5 +19,12 @@ Introduce a new entity into the web api implementation for Users. There should b
 * Get user by id
 * Get all user's movies rented
 
+A user contains:
+* Id
+* FullName
+* Username
+* Password
+* Subscription (Default, Premium)
+
 **Bonus** 
 * Get all user's movies rented by same genre
