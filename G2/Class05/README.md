@@ -24,7 +24,9 @@ We keep the following information about a director:
 * lastName
 * country
 
-Add option to filter the movies by directors country.
+Add option to filter the movies by directors country. For example, we have: Movie1 - director with country MK, Movie2 - director with country USA,
+Movie3 director with country MK. If we filter by MK, we should get the first and the last movie.
+
 
 * Configure Swagger
 
