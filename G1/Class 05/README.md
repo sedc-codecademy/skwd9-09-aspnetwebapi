@@ -12,3 +12,12 @@ A movie contains:
 * description
 * year
 * genre
+
+Introduce a new entity into the web api implementation for Users. There should be a User handling endpoints for
+* Create new user
+* Get all users
+* Get user by id
+* Get all user's movies rented
+
+**Bonus** 
+* Get all user's movies rented by same genre
