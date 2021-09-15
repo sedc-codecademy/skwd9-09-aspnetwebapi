@@ -20,11 +20,13 @@ namespace SEDC.MovieWorkshop.WebApi.Services
         }
 
 
-        public ResultDTO CreateMovie(Movie movie)
+        public ResultDTO CreateMovie(MovieDTO movieDTO)
         {
             ResultDTO result = new ResultDTO { Succeeded = true, ErrorMessage = string.Empty };
-            if(movie != null)
+
+            if(movieDTO.Title != null && movieDTO.Title != string.Empty)
             {
+                Movie movie = MovieMapper.MovieDTOToMovie(movieDTO);
                 _movieRepository.Add(movie);
             }
             else
@@ -40,9 +42,11 @@ namespace SEDC.MovieWorkshop.WebApi.Services
             return MovieMapper.MoviesToMoviesDTOList(_movieRepository.GetAll());
         }
 
-        public MovieDTO GetMovieById(int id)
+        public List<MovieDTO> GetMoviesById(int id)
         {
-            return MovieMapper.MovieToMovieDTO(_movieRepository.GetById(id));
+            List<Movie> movies = new List<Movie> { _movieRepository.GetById(id) };
+
+            return MovieMapper.MoviesToMoviesDTOList(movies);
         }
     }
 }

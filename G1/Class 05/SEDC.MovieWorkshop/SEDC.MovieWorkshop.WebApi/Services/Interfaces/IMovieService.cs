@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SEDC.MovieWorkshop.WebApi.Services.Interfaces
 {
-    interface IMovieService
+    public interface IMovieService
     {
-        ResultDTO CreateMovie(Movie movie);
+        ResultDTO CreateMovie(MovieDTO movie);
         List<MovieDTO> GetAllMovies();
-        MovieDTO GetMovieById(int id);
+        List<MovieDTO> GetMoviesById(int id);
     }
 }
