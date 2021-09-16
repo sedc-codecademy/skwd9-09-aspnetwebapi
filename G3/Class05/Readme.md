@@ -13,3 +13,19 @@ A movie contains:
 * year
 * genre
 
+## Bonus
+
+Introduce a new entity into the web api implementation for Users. There should be a User handling endpoints for
+* Create new user
+* Get all users
+* Get user by id
+* Get all user's movies rented
+
+A user contains:
+* Id
+* FullName
+* Username
+* Password
+* Subscription (Default, Premium)
+
+
