@@ -8,7 +8,7 @@ namespace SEDC.Notes
 {
     public static class CacheDb
     {
-
+        public static int UserIdCounter = 1;
         public static List<User> Users = new List<User>
         {
             new User 
@@ -21,6 +21,7 @@ namespace SEDC.Notes
             }
         };
 
+        public static int NoteIdCounter = 2;
         public static List<Note> Notes = new List<Note>
         {
             new Note 

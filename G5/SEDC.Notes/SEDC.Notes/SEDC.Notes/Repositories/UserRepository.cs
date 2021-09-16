@@ -11,22 +11,40 @@ namespace SEDC.Notes.Repositories
     {
         public void Add(User entity)
         {
-            throw new NotImplementedException();
+            CacheDb.UserIdCounter++;
+            entity.Id = CacheDb.UserIdCounter;
+            CacheDb.Users.Add(entity);
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            var user = CacheDb.Users.FirstOrDefault(u => u.Id == entity.Id);
+
+            if (user != null) 
+            {
+                CacheDb.Users.Remove(user);
+            }
         }
 
         public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            return CacheDb.Users;
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            var user = CacheDb.Users.FirstOrDefault(u => u.Id == entity.Id);
+
+            if (user != null) 
+            {
+                var indexOfUser = CacheDb.Users.IndexOf(user);
+                CacheDb.Users[indexOfUser] = entity;
+
+                //user.FirstName = entity.FirstName;
+                //user.LastName = entity.LastName;
+                //user.Username = entity.Username;
+                //user.Password = entity.Password;
+            }
         }
     }
 }
