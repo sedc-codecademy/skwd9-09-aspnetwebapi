@@ -6,6 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SEDC.Notes.Models.Data;
+using SEDC.Notes.Repositories;
+using SEDC.Notes.Repositories.IRepository;
+using SEDC.Notes.Services.Classes;
+using SEDC.Notes.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +31,13 @@ namespace SEDC.Notes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //register services
+            services.AddTransient<INoteService, NoteService>();
+
+            //register repositories
+            services.AddTransient<IRepository<Note>, NoteRepository>();
+            services.AddTransient<IRepository<User>, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
