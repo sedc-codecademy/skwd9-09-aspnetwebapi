@@ -18,11 +18,32 @@ namespace SEDC.Notes.Services.Classes
         {
             _noteRepository = noteRepository;
         }
-
         public List<NoteDto> GetUserNotes(int userId)
         {
             return _noteRepository.GetAll().Where(x => x.UserId == userId)
                                         .Select(note => NoteMapper.NoteModelToNoteDto(note)).ToList();
         }
+
+        public string AddNote(NoteDto note)
+        {
+            if (string.IsNullOrEmpty(note.Text)) 
+            {
+                throw new Exception("Note text is empty");
+            }
+
+            if (string.IsNullOrEmpty(note.Color))
+            {
+                throw new Exception("Note color is empty");
+            }
+
+            var noteModel = NoteMapper.NoteDtoToNoteModel(note);
+            _noteRepository.Add(noteModel);
+
+            return "Note successfully added!";
+        }
+
+
+
+
     }
 }

@@ -30,6 +30,9 @@ namespace SEDC.Notes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //swagger
+            services.AddSwaggerGen();
+
             services.AddControllers();
 
             //register services
@@ -38,6 +41,7 @@ namespace SEDC.Notes
             //register repositories
             services.AddTransient<IRepository<Note>, NoteRepository>();
             services.AddTransient<IRepository<User>, UserRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +51,13 @@ namespace SEDC.Notes
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseHttpsRedirection();
 

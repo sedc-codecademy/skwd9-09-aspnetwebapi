@@ -39,7 +39,15 @@ namespace SEDC.Notes.Controllers
         [Route("addnote")]
         public ActionResult AddNote([FromBody]NoteDto note)
         {
-            return Ok();
+            try
+            {
+                var response = _noteService.AddNote(note);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
