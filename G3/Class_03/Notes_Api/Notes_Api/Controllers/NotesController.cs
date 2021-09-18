@@ -30,7 +30,7 @@ namespace Notes_Api.Controllers
             new Note()
             {
                 Id = 3,
-                Text = "read book",
+                Text = "DO JOGGING",
                 Color = "yellow"
             }
         };
@@ -90,6 +90,66 @@ namespace Notes_Api.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Message = ex.Message });
             }
+        }
+
+        //[HttpPost]
+        //public ActionResult<int> Post([FromQuery] Note note)
+        //{
+        //    try
+        //    {
+        //        if (note.Text.Length == 0)
+        //        {
+        //            return StatusCode(StatusCodes.Status400BadRequest,
+        //                new { Message = "Text field is required" });
+        //        }
+        //        note.Id = notes.Count + 1;
+        //        notes.Add(note);
+        //        return StatusCode(StatusCodes.Status200OK,
+        //            new { id = note.Id });
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Message = ex.Message });
+        //    }
+        //}
+
+        [HttpGet("text")] // api/notes/text?text="some value"
+        public ActionResult<List<Note>> GetNoteByText([FromQuery(Name = "name")] string text, [FromQuery] string color)
+        {
+            try
+            {
+                if (text == null || text.Length == 0)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest,
+                        new { Message = "Text query parametar is needed" });
+                }
+
+                //if (color == null)
+                //{
+                //    notes.Where(note => note.Text.Contains(text)).ToList();
+                //}
+
+                return notes.Where(note => note.Text.Contains(text) && note.Color == color).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = ex.Message });
+            }
+        }
+
+        [HttpGet("whatever")]
+        public ActionResult<string> GetWhatever([FromHeader(Name = "User-Agent")] string agent, [FromHeader] string token)
+        {
+            if (token == null)
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized,
+                    new { Message = "You are not authorized to get this data" });
+            }
+
+            return StatusCode(StatusCodes.Status200OK,
+                new { Agent= agent, Message="SUCCESS" });
         }
 
         // PUT api/<NotesController>/5
