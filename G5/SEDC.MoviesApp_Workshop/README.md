@@ -10,10 +10,11 @@ Create an API that keeps and manages your favorite movies. It should have the op
 * update movie
 
 A movie contains:
-* title
-* description
-* year
-* genre (enum)
+* Id
+* Title
+* Description
+* Year
+* Genre (enum)
 
 A genre contains:
 * Action
@@ -30,6 +31,7 @@ Introduce a new entity into the web api implementation for Users. There should b
 * Get all user's movies rented
 
 A user contains:
+* Id
 * Username
 * Password
 * First Name
