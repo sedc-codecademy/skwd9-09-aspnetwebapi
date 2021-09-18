@@ -10,5 +10,8 @@ namespace SEDC.Notes.Services.Interfaces
     {
         List<NoteDto> GetUserNotes(int userId);
         string AddNote(NoteDto note);
+        NoteDto GetNoteDetails(int noteId, int userId);
+        string DeleteNote(int noteId, int userId);
+        string UpdateNote(NoteDto note);
     }
 }
