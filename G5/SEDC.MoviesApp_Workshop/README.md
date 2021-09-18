@@ -44,10 +44,10 @@ A Subscription contains:
 * Default
 * Premium
 
+Other:
 * Keep data in a fixed static class for now
-
 * Add SWAGGER
 
 **Bonus** 
 * Get all user's movies rented by same genre
-* Implement CORS
+* Implement CORS and small vanilla js app that pings only one get endpoint to prove that the CORS works
