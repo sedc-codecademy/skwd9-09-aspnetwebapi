@@ -21,26 +21,26 @@ namespace SEDC.NotesApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Note>> Get()
+        public ActionResult<List<NoteModel>> Get()
         {
             return _noteService.GetAllNotes();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Note> Get(int id)
+        public ActionResult<NoteModel> Get(int id)
         {
             return _noteService.GetNoteById(id);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Note note)
+        public IActionResult Post([FromBody] NoteModel note)
         {
             _noteService.AddNote(note);
             return StatusCode(StatusCodes.Status201Created, "Note created!");
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Note note)
+        public IActionResult Put([FromBody] NoteModel note)
         {
             _noteService.UpdateNote(note);
             return StatusCode(StatusCodes.Status204NoContent, "Note updated!");

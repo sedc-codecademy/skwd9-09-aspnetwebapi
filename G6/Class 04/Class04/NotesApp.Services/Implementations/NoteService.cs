@@ -1,6 +1,8 @@
 ﻿using NoteApp.Domain;
+using NoteApp.Domain.Models;
 using NotesApp.DataAccess;
 using NotesApp.Services.Interfaces;
+using SEDC.NotesApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,11 +12,13 @@ namespace NotesApp.Services.Implementations
     public class NoteService : INoteService
     {
         private IRepository<Note> _noteRepository;
-        public NoteService()
+        private IRepository<User> _userRepository;
+        public NoteService(IRepository<Note> noteRepository, IRepository<User> userRepository)
         {
-            _noteRepository = new NotesRepository();
+            _noteRepository = noteRepository;
+            _userRepository = userRepository;
         }
-        public void AddNote(Note note)
+        public void AddNote(NoteModel note)
         {
             _noteRepository.Add(note);
         }
@@ -24,17 +28,20 @@ namespace NotesApp.Services.Implementations
             _noteRepository.Delete(id);
         }
 
-        public List<Note> GetAllNotes()
+        public List<NoteModel> GetAllNotes()
         {
-            return _noteRepository.GetAll();
+            List<Note> notesDb = _noteRepository.GetAll();
+            List<NoteModel> noteModels = new List<NoteModel>();
+
+            return noteModels;
         }
 
-        public Note GetNoteById(int id)
+        public NoteModel GetNoteById(int id)
         {
             return _noteRepository.GetById(id);
         }
 
-        public void UpdateNote(Note note)
+        public void UpdateNote(NoteModel note)
         {
             _noteRepository.Update(note);
         }
