@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NoteApp.Domain\NoteApp.Domain.csproj" />
     <ProjectReference Include="..\NotesApp.DataAccess\NotesApp.DataAccess.csproj" />
+    <ProjectReference Include="..\SEDC.NotesApp.Mappers\SEDC.NotesApp.Mappers.csproj" />
     <ProjectReference Include="..\SEDC.NotesApp.Models\SEDC.NotesApp.Models.csproj" />
   </ItemGroup>
 
