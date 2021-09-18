@@ -73,7 +73,6 @@ namespace SEDC.Notes.Services.Classes
             return "Note succesfully deleted!";
         }
 
-        //potental bug...
         public string UpdateNote(NoteDto note)
         {
             if (note == null) 
