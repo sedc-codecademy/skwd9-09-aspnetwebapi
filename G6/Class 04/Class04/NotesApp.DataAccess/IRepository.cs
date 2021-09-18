@@ -10,7 +10,7 @@ namespace NotesApp.DataAccess
         List<T> GetAll();
         T GetById(int id);
         void Add(T entity);
-        void Delete(T delete);
+        void Delete(int id);
         void Update(T update);
     }
 }
