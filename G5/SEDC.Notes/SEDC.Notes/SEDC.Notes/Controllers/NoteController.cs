@@ -24,20 +24,35 @@ namespace SEDC.Notes.Controllers
         [Route("getallnotes/{userId}")]
         public ActionResult<List<NoteDto>> GetAllNotes([FromRoute]int userId)
         {
-            var response = _noteService.GetUserNotes(userId);
-            return Ok(response);
+            try
+            {
+                var response = _noteService.GetUserNotes(userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
         [Route("getnotedetails/{noteId}/{userId}")]
         public ActionResult<NoteDto> GetNoteDetails([FromRoute]int noteId, [FromRoute]int userId)
         {
-            return Ok();
+            try
+            {
+                var response = _noteService.GetNoteDetails(noteId, userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            } 
         }
 
         [HttpPost]
         [Route("addnote")]
-        public ActionResult AddNote([FromBody]NoteDto note)
+        public ActionResult<string> AddNote([FromBody]NoteDto note)
         {
             try
             {
@@ -52,9 +67,32 @@ namespace SEDC.Notes.Controllers
 
         [HttpDelete]
         [Route("deletenote/{noteId}/{userId}")]
-        public ActionResult DeleteNote([FromRoute] int noteId, [FromRoute] int userId) 
+        public ActionResult<string> DeleteNote([FromRoute] int noteId, [FromRoute] int userId) 
         {
-            return Ok();
+            try
+            {
+                var response = _noteService.DeleteNote(noteId, userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("updatenote")]
+        public ActionResult<string> UpdateNote([FromBody] NoteDto note) 
+        {
+            try
+            {
+                var response = _noteService.UpdateNote(note);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 

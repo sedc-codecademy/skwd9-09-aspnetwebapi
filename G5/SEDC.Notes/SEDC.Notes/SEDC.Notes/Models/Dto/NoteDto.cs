@@ -11,7 +11,7 @@ namespace SEDC.Notes.Models.Dto
         public int Id { get; set; }
         public string Text { get; set; }
         public string Color { get; set; }
-        public TagType TagType { get; set; }
+        public TagType? TagType { get; set; }
         public DateTime DateCreated { get; set; }
         public int UserId { get; set; }
     }
