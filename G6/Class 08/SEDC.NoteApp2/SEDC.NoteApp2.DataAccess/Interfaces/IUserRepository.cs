@@ -6,6 +6,6 @@ namespace SEDC.NoteApp2.DataAccess.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         List<User> GetAllIncludeNotes();
-        User GetByIdIncludeNotes();
+        User GetByIdIncludeNotes(int userId);
     }
 }
