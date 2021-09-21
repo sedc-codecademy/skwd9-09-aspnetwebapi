@@ -17,18 +17,20 @@ namespace SEDC.Orders.Entity
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var ConnectionString = Configuration.GetSection("SQL").GetValue<string>("ConnectionString");
+
             //configure entity framework connection string
-            services.AddDbContext<OrdersDbContext>(x => x.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=SEDCOrdersDb;Trusted_Connection=True;"));
+            services.AddDbContext<OrdersDbContext>(x => x.UseSqlServer(ConnectionString));
 
 
             services.AddControllers();
