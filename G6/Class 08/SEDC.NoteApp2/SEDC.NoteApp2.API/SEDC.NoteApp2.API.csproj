@@ -22,4 +22,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SEDC.NoteApp2.DataAccess\SEDC.NoteApp2.DataAccess.csproj" />
+    <ProjectReference Include="..\SEDC.NoteApp2.Domain\SEDC.NoteApp2.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
