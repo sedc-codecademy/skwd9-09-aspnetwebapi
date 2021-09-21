@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class06.EntityFramework.ScaffoldDb", "Class06.EntityFramework.ScaffoldDb\Class06.EntityFramework.ScaffoldDb.csproj", "{4542FB80-FEEB-470F-AC3E-34A7F1244FAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class06.EntityFramework.DataModels", "Class06.EntityFramework.DataModels\Class06.EntityFramework.DataModels.csproj", "{81884545-7DE8-461B-A5D3-1F46B686EC27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4542FB80-FEEB-470F-AC3E-34A7F1244FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4542FB80-FEEB-470F-AC3E-34A7F1244FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4542FB80-FEEB-470F-AC3E-34A7F1244FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4542FB80-FEEB-470F-AC3E-34A7F1244FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81884545-7DE8-461B-A5D3-1F46B686EC27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81884545-7DE8-461B-A5D3-1F46B686EC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81884545-7DE8-461B-A5D3-1F46B686EC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81884545-7DE8-461B-A5D3-1F46B686EC27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C00C7A73-962B-4B9D-A62A-64BCF973C278}
+	EndGlobalSection
+EndGlobal
