@@ -5,11 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Implementations\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\SEDC.NoteApp2.DataAccess\SEDC.NoteApp2.DataAccess.csproj" />
     <ProjectReference Include="..\SEDC.NoteApp2.Dto\SEDC.NoteApp2.Dto.csproj" />
+    <ProjectReference Include="..\SEDC.NoteApp2.Mappers\SEDC.NoteApp2.Mappers.csproj" />
   </ItemGroup>
 
 </Project>
