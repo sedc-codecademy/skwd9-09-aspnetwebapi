@@ -48,6 +48,8 @@ namespace SEDC.NoteApp2.API
 
             services.AddTransient<INoteService, NoteService>();
             services.AddTransient<IUserService, UserService>();
+
+            services.AddTransient<IEntityValidationService, EntityValidationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
