@@ -6,5 +6,6 @@ namespace SEDC.NoteApp2.Services.Interfaces
     public interface IEntityValidationService
     {
         ValidationResponse ValidateNote(NoteDto noteDto);
+        ValidationResponse ValidateUser(UserDto userDto);
     }
 }

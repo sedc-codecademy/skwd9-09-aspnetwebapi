@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.NoteApp2.Dto.Models;
+using SEDC.NoteApp2.Dto.ValidationModels;
 using SEDC.NoteApp2.Services.Interfaces;
 using System.Collections.Generic;
 
@@ -11,10 +12,12 @@ namespace SEDC.NoteApp2.API.Controllers
     public class UserController : ControllerBase
     {
         private IUserService _userService;
+        private IEntityValidationService _entityValidationService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IEntityValidationService entityValidationService)
         {
             _userService = userService;
+            _entityValidationService = entityValidationService;
         }
 
         [HttpGet("")]
@@ -48,6 +51,13 @@ namespace SEDC.NoteApp2.API.Controllers
         [HttpPost("")]
         public ActionResult AddUser(UserDto userDto)
         {
+            ValidationResponse validationResponse = _entityValidationService.ValidateUser(userDto);
+
+            if (validationResponse.HasError)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, validationResponse);
+            }
+
             _userService.AddUser(userDto);
             return StatusCode(StatusCodes.Status201Created);
         }
