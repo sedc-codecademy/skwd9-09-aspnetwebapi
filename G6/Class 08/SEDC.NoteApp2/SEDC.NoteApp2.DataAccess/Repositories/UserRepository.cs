@@ -58,6 +58,13 @@ namespace SEDC.NoteApp2.DataAccess.Repositories
                .FirstOrDefault(x => x.Id == id);
         }
 
+        public bool IsUsernameInUse(string username)
+        {
+            return _notesAppDbContext
+                .Users
+                .Any(q => q.Username == username);
+        }
+
         public void Update(User entity)
         {
             _notesAppDbContext.Users.Update(entity);

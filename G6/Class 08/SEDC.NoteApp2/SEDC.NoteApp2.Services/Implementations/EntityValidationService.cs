@@ -52,6 +52,11 @@ namespace SEDC.NoteApp2.Services.Implementations
                 return ValidationResponse.CreateErrorValidation(results.FirstOrDefault().ErrorMessage); // this is example
             }
 
+            if (_userRepository.IsUsernameInUse(userDto.Username))
+            {
+                return ValidationResponse.CreateErrorValidation($"Username: {userDto.Username} is not available.");
+            }
+
             return ValidationResponse.CreateSuccessValidation();
         }
     }
