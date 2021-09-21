@@ -63,7 +63,7 @@ namespace SEDC.NoteApp2.Services.Implementations
             return noteDto;
         }
 
-        public void Update(NoteDto noteDto)
+        public void UpdateNote(NoteDto noteDto)
         {
             Note note = noteDto.ToNote();
             _noteRepository.Update(note);
