@@ -26,14 +26,17 @@ namespace SEDC.Orders.Entity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //swagger
+            services.AddSwaggerGen();
 
             var ConnectionString = Configuration.GetSection("SQL").GetValue<string>("ConnectionString");
 
             //configure entity framework connection string
             services.AddDbContext<OrdersDbContext>(x => x.UseSqlServer(ConnectionString));
 
-
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => 
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +46,13 @@ namespace SEDC.Orders.Entity
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseHttpsRedirection();
 

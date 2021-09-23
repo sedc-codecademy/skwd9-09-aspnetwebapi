@@ -80,70 +80,6 @@ namespace SEDC.NoteApp2.API.Controllers
             return StatusCode(StatusCodes.Status200OK, userDto);
         }
 
-        [HttpGet("{id}/notes")]
-        public ActionResult<List<UserDto>> GetAllUsersWithNotes(int id)
-        {
-            SqlConnection connection = new SqlConnection(_connectionString);
-            connection.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
-            cmd.CommandText = "SELECT Id, Text, Color, Tag, UserId FROM Notes WHERE UserId = @userId";
-            cmd.Parameters.AddWithValue("@userId", id);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            List<NoteDto> noteDtos = new List<NoteDto>();
-
-            while (dr.Read())
-            {
-                NoteDto noteDto = new NoteDto()
-                {
-                    Id = dr.GetInt32(0),
-                    Text = dr.GetFieldValue<string>(1),
-                    Color = (string)dr["Color"],
-                    Tag = dr.GetFieldValue<TagType>(3),
-                    UserId = dr.GetInt32(4),
-                    UserFullName = string.Empty
-                };
-
-                noteDtos.Add(noteDto);
-            }
-
-            dr.Close();
-
-            cmd = new SqlCommand();
-            cmd.Connection = connection;
-            cmd.CommandText = "SELECT Id, FirstName, LastName, Username, Address, Age FROM Users WHERE Id = @userId";
-            cmd.Parameters.AddWithValue("@userId", id);
-            dr = cmd.ExecuteReader();
-
-            UserDto userDto = new UserDto();
-
-            while (dr.Read())
-            {
-                userDto = new UserDto()
-                {
-                    Id = dr.GetInt32(0),
-                    FirstName = dr.GetFieldValue<string>(1),
-                    LastName = (string)dr["LastName"],
-                    Username = dr.GetString(3),
-                    Address = dr.GetString(4),
-                    Age = dr.GetFieldValue<int>(5),
-                    Notes = noteDtos
-                    .Select(
-                        x =>
-                        {
-                            x.UserFullName = $"{dr.GetFieldValue<string>(1)} {(string)dr["LastName"]}";
-                            return x;
-                        })
-                    .ToList()
-                };
-            }
-
-            return StatusCode(StatusCodes.Status200OK, userDto);
-        }
-
         [HttpGet("notes")]
         public ActionResult<List<UserDto>> GetAllUsersWithNotes()
         {
@@ -210,6 +146,70 @@ namespace SEDC.NoteApp2.API.Controllers
             }
 
             return StatusCode(StatusCodes.Status200OK, userDtos);
+        }
+
+        [HttpGet("{id}/notes")]
+        public ActionResult<List<UserDto>> GetAllUsersWithNotes(int id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+            cmd.CommandText = "SELECT Id, Text, Color, Tag, UserId FROM Notes WHERE UserId = @userId";
+            cmd.Parameters.AddWithValue("@userId", id);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            List<NoteDto> noteDtos = new List<NoteDto>();
+
+            while (dr.Read())
+            {
+                NoteDto noteDto = new NoteDto()
+                {
+                    Id = dr.GetInt32(0),
+                    Text = dr.GetFieldValue<string>(1),
+                    Color = (string)dr["Color"],
+                    Tag = dr.GetFieldValue<TagType>(3),
+                    UserId = dr.GetInt32(4),
+                    UserFullName = string.Empty
+                };
+
+                noteDtos.Add(noteDto);
+            }
+
+            dr.Close();
+
+            cmd = new SqlCommand();
+            cmd.Connection = connection;
+            cmd.CommandText = "SELECT Id, FirstName, LastName, Username, Address, Age FROM Users WHERE Id = @userId";
+            cmd.Parameters.AddWithValue("@userId", id);
+            dr = cmd.ExecuteReader();
+
+            UserDto userDto = new UserDto();
+
+            while (dr.Read())
+            {
+                userDto = new UserDto()
+                {
+                    Id = dr.GetInt32(0),
+                    FirstName = dr.GetFieldValue<string>(1),
+                    LastName = (string)dr["LastName"],
+                    Username = dr.GetString(3),
+                    Address = dr.GetString(4),
+                    Age = dr.GetFieldValue<int>(5),
+                    Notes = noteDtos
+                    .Select(
+                        x =>
+                        {
+                            x.UserFullName = $"{dr.GetFieldValue<string>(1)} {(string)dr["LastName"]}";
+                            return x;
+                        })
+                    .ToList()
+                };
+            }
+
+            return StatusCode(StatusCodes.Status200OK, userDto);
         }
 
         [HttpPost("")]

@@ -20,7 +20,7 @@ namespace SEDC.Orders.DAL.DomainModels
         public int UserId { get; set; } //fk
 
 
-
+        public ICollection<OrderProduct> OrderProducts { get; set; }
 
     }
 }
