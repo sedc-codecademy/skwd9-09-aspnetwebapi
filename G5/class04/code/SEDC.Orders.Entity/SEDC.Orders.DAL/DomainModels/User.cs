@@ -22,5 +22,8 @@ namespace SEDC.Orders.DAL.DomainModels
 
         //navigation properties 
         public virtual ICollection<Order> Orders { get; set; }
+
+
+        public UserInfo UserInfo { get; set; }
     }
 }
