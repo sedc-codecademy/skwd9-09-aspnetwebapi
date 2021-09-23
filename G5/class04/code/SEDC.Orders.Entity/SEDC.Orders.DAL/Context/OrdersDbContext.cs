@@ -17,5 +17,25 @@ namespace SEDC.Orders.DAL.Context
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            //modelBuilder.Entity<Order>().ToTable("Orders");
+            // one to many relationship configuration
+            modelBuilder.Entity<Order>(entity => 
+            {
+                entity.Property(p => p.Address).HasMaxLength(30);
+                entity.Property(p => p.IsDelievered).IsRequired();
+                entity.Property(p => p.OrderNumber).HasColumnName("order-number");
+
+                entity.HasOne(x => x.User)
+                      .WithMany(x => x.Orders)
+                      .HasForeignKey(x => x.UserId)
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .HasConstraintName("MyFKConstraint");
+            });
+
+        }
     }
 }
