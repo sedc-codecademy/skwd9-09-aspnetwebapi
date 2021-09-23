@@ -10,7 +10,7 @@ using SEDC.Orders.DAL.Context;
 namespace SEDC.Orders.DAL.Migrations
 {
     [DbContext(typeof(OrdersDbContext))]
-    [Migration("20210921174135_init")]
+    [Migration("20210923170149_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,8 @@ namespace SEDC.Orders.DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<bool>("IsDelievered")
                         .HasColumnType("bit");
@@ -38,9 +39,15 @@ namespace SEDC.Orders.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OrderNumber")
+                        .HasColumnName("order-number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -64,6 +71,16 @@ namespace SEDC.Orders.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SEDC.Orders.DAL.DomainModels.Order", b =>
+                {
+                    b.HasOne("SEDC.Orders.DAL.DomainModels.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("MyFKConstraint")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
