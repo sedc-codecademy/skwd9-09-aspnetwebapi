@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Shared.Enums;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace SEDC.NoteApp2.API.Controllers
@@ -208,6 +210,52 @@ namespace SEDC.NoteApp2.API.Controllers
             }
 
             return StatusCode(StatusCodes.Status200OK, userDtos);
+        }
+
+        [HttpPost("")]
+        public ActionResult<int> CreateNewUser(UserDto userDto)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlTransaction transaction = connection.BeginTransaction();
+
+            int userId;
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.Transaction = transaction;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_CreateNewUser";
+                cmd.Parameters.AddWithValue("@firstName", userDto.FirstName);
+                cmd.Parameters.AddWithValue("@lastName", userDto.LastName);
+                cmd.Parameters.AddWithValue("@username", userDto.Username);
+                cmd.Parameters.AddWithValue("@address", userDto.Address);
+                cmd.Parameters.AddWithValue("@age", userDto.Age);
+
+                cmd.Parameters.Add(new SqlParameter()
+                {
+                    ParameterName = "@id",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output,
+                    Value = 0
+                });
+
+                cmd.ExecuteNonQuery();
+
+                userId = (int)cmd.Parameters["@id"].Value;
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+
+            return StatusCode(StatusCodes.Status201Created, userId);
         }
     }
 }
