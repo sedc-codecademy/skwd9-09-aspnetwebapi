@@ -92,6 +92,7 @@ namespace SEDC.Orders.Entity.Controllers
         {
             var users = _ordersDb.Users.Include(x => x.Orders)
                                        .ThenInclude(x => x.OrderProducts)
+                                       .ThenInclude(x => x.Product)
                                        .Include(x => x.UserInfo)
                                        .ToList();
             return Ok(users);        

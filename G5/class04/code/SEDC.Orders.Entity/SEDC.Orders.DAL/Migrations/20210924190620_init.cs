@@ -122,12 +122,12 @@ namespace SEDC.Orders.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "Address", "IsDelievered", "OrderCreationDate", "order-number", "UserId" },
-                values: new object[] { 1, "random address 1", false, new DateTime(2021, 9, 23, 20, 49, 35, 178, DateTimeKind.Local).AddTicks(7903), 1111, 1 });
+                values: new object[] { 1, "random address 1", false, new DateTime(2021, 9, 24, 21, 6, 20, 453, DateTimeKind.Local).AddTicks(7882), 1111, 1 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "Address", "IsDelievered", "OrderCreationDate", "order-number", "UserId" },
-                values: new object[] { 2, "random address 2", true, new DateTime(2021, 9, 23, 20, 49, 35, 181, DateTimeKind.Local).AddTicks(8956), 2222, 1 });
+                values: new object[] { 2, "random address 2", true, new DateTime(2021, 9, 24, 21, 6, 20, 456, DateTimeKind.Local).AddTicks(458), 2222, 1 });
 
             migrationBuilder.InsertData(
                 table: "OrderProducts",

@@ -10,7 +10,7 @@ using SEDC.Orders.DAL.Context;
 namespace SEDC.Orders.DAL.Migrations
 {
     [DbContext(typeof(OrdersDbContext))]
-    [Migration("20210923184935_init")]
+    [Migration("20210924190620_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace SEDC.Orders.DAL.Migrations
                             Id = 1,
                             Address = "random address 1",
                             IsDelievered = false,
-                            OrderCreationDate = new DateTime(2021, 9, 23, 20, 49, 35, 178, DateTimeKind.Local).AddTicks(7903),
+                            OrderCreationDate = new DateTime(2021, 9, 24, 21, 6, 20, 453, DateTimeKind.Local).AddTicks(7882),
                             OrderNumber = 1111,
                             UserId = 1
                         },
@@ -66,7 +66,7 @@ namespace SEDC.Orders.DAL.Migrations
                             Id = 2,
                             Address = "random address 2",
                             IsDelievered = true,
-                            OrderCreationDate = new DateTime(2021, 9, 23, 20, 49, 35, 181, DateTimeKind.Local).AddTicks(8956),
+                            OrderCreationDate = new DateTime(2021, 9, 24, 21, 6, 20, 456, DateTimeKind.Local).AddTicks(458),
                             OrderNumber = 2222,
                             UserId = 1
                         });
