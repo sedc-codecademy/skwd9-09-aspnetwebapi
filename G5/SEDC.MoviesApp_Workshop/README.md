@@ -53,3 +53,13 @@ Other:
 **Bonus** 
 * Get all user's movies rented by same genre
 * Implement CORS and small vanilla js app that pings only one get endpoint to prove that the CORS works
+
+## Part 2
+Implement entity framework in the solution and switch the database from CashDb to Entity Framework.
+
+* Make relationship between User and Movie. The relationship should be one to many
+
+**Hints**
+- Create new repositories that will inherit from the generic one. 
+- Implement all the methods from the interface with the entity framework implementation. (use the dbcontext class instead of the CashDb) 
+- Switch the implementation of the interfaces in the startap class from CashDb to the newly created entity framework repositories.
