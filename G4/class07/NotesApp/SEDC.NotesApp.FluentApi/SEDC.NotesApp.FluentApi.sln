@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.NotesApp.FluentApi", "SEDC.NotesApp.FluentApi.csproj", "{A8E9D34B-E2F5-45E0-A347-2E421B36977F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.NotesApp.DataAccess", "..\SEDC.NotesApp.DataAccess\SEDC.NotesApp.DataAccess.csproj", "{7BED5163-77A2-4C26-96BE-22144C24BB6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.NotesApp.Domain", "..\SEDC.NotesApp.Domain\SEDC.NotesApp.Domain.csproj", "{7DE98A26-A712-48DB-975C-6A0622546768}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.NotesApp.Helpers", "..\SEDC.NotesApp.Helpers\SEDC.NotesApp.Helpers.csproj", "{FB12566E-D08D-4F2E-9268-E6BA9F364DA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesApp.Services", "..\SEDC.NotesApp.Services\SEDC.NotesApp.Services.csproj", "{0057CD04-C982-401E-85CF-EB269A8E8EAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesApp.Models", "..\SEDC.NotesApp.Models\SEDC.NotesApp.Models.csproj", "{D1A44D8C-F1A2-451E-8E11-CE9CA1CE8223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesApp.Shared", "..\SEDC.NotesApp.Shared\SEDC.NotesApp.Shared.csproj", "{AB7537BA-EC60-4ED6-BFE7-AE35899C3007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesApp.Mappers", "..\SEDC.NotesApp.Mappers\SEDC.NotesApp.Mappers.csproj", "{DD45469C-230B-4E1D-A495-530C33C32CBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8E9D34B-E2F5-45E0-A347-2E421B36977F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E9D34B-E2F5-45E0-A347-2E421B36977F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E9D34B-E2F5-45E0-A347-2E421B36977F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E9D34B-E2F5-45E0-A347-2E421B36977F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BED5163-77A2-4C26-96BE-22144C24BB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BED5163-77A2-4C26-96BE-22144C24BB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BED5163-77A2-4C26-96BE-22144C24BB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BED5163-77A2-4C26-96BE-22144C24BB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE98A26-A712-48DB-975C-6A0622546768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE98A26-A712-48DB-975C-6A0622546768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE98A26-A712-48DB-975C-6A0622546768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE98A26-A712-48DB-975C-6A0622546768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB12566E-D08D-4F2E-9268-E6BA9F364DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB12566E-D08D-4F2E-9268-E6BA9F364DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB12566E-D08D-4F2E-9268-E6BA9F364DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB12566E-D08D-4F2E-9268-E6BA9F364DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0057CD04-C982-401E-85CF-EB269A8E8EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0057CD04-C982-401E-85CF-EB269A8E8EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0057CD04-C982-401E-85CF-EB269A8E8EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0057CD04-C982-401E-85CF-EB269A8E8EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A44D8C-F1A2-451E-8E11-CE9CA1CE8223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A44D8C-F1A2-451E-8E11-CE9CA1CE8223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A44D8C-F1A2-451E-8E11-CE9CA1CE8223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A44D8C-F1A2-451E-8E11-CE9CA1CE8223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB7537BA-EC60-4ED6-BFE7-AE35899C3007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7537BA-EC60-4ED6-BFE7-AE35899C3007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7537BA-EC60-4ED6-BFE7-AE35899C3007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7537BA-EC60-4ED6-BFE7-AE35899C3007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD45469C-230B-4E1D-A495-530C33C32CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD45469C-230B-4E1D-A495-530C33C32CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD45469C-230B-4E1D-A495-530C33C32CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD45469C-230B-4E1D-A495-530C33C32CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B11021EE-9218-4CD7-83E1-010AE8D62E4E}
+	EndGlobalSection
+EndGlobal
