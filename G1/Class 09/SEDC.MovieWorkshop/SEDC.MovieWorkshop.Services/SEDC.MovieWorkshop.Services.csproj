@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SEDC.MovieWorkshop.DataAccess\SEDC.MovieWorkshop.DataAccess.csproj" />
+    <ProjectReference Include="..\SEDC.MovieWorkshop.DataModels\SEDC.MovieWorkshop.DataModels.csproj" />
+    <ProjectReference Include="..\SEDC.MovieWorkshop.Models\SEDC.MovieWorkshop.Models.csproj" />
+  </ItemGroup>
+
+</Project>
