@@ -1,9 +1,15 @@
-﻿using SEDC.NoteApp2.DataAccess.Interfaces;
+﻿using Microsoft.IdentityModel.Tokens;
+using SEDC.NoteApp2.DataAccess.Interfaces;
 using SEDC.NoteApp2.Domain.Models;
 using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Mappers;
 using SEDC.NoteApp2.Services.Interfaces;
+using SEDC.NoteApp2.Shared.Helpers;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace SEDC.NoteApp2.Services.Implementations
 {
@@ -20,6 +26,40 @@ namespace SEDC.NoteApp2.Services.Implementations
         {
             User user = userDto.ToUser();
             _userRepository.Add(user);
+        }
+
+        public TokenDto Authenticate(string username, string password)
+        {
+            User user = _userRepository.GetUserByUsernameAndPassword(username, password.GenerateMD5());
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            byte[] key = Encoding.ASCII.GetBytes("v9pU6HkfcZst3ksP");
+
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor()
+            {
+                Subject = new ClaimsIdentity(
+                    new[]
+                    {
+                        new Claim(ClaimTypes.Name, user.Username),
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                    }),
+                Expires = DateTime.UtcNow.AddHours(2),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
+            TokenDto tokenDto = new TokenDto()
+            {
+                Token = tokenHandler.WriteToken(token)
+            };
+
+            return tokenDto;
         }
 
         public void DeleteUser(int id)

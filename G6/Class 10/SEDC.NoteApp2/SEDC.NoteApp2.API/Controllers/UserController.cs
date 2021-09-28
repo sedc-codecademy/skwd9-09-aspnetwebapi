@@ -75,5 +75,18 @@ namespace SEDC.NoteApp2.API.Controllers
             _userService.DeleteUser(id);
             return StatusCode(StatusCodes.Status202Accepted);
         }
+
+        [HttpPost("authenticate")]
+        public ActionResult<TokenDto> AuthenticateUser(LoginDto model)
+        {
+            TokenDto token = _userService.Authenticate(model.Username, model.Password);
+
+            if (token == null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Invalid Username Or Password");
+            }
+
+            return StatusCode(StatusCodes.Status200OK, token);
+        }
     }
 }
