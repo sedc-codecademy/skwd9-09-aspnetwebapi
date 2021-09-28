@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SEDC.Notes.IoC;
+using SEDC.Notes.WebApi.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +15,24 @@ using System.Threading.Tasks;
 
 namespace SEDC.Notes.WebApi
 {
+    //Microsoft.EntityFrameworkCore.Design
     public class Startup
     {
+        public IConfiguration _configuration { get; }
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // configuring appsettings section
+            var appConfig = _configuration.GetSection("DatabaseOptions");
+            services.Configure<DatabaseOptions>(appConfig);
+
+            // using appsettings section
+            var databaseOptions = appConfig.Get<DatabaseOptions>();
+
             //swagger
             services.AddSwaggerGen();
 
@@ -37,9 +45,10 @@ namespace SEDC.Notes.WebApi
             });
 
             services.AddControllers();
+
+            IoCContainer.ConfigureIoCContainer(services, databaseOptions.NotesAppConnectionString);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

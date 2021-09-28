@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.Services", "SEDC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.RequestModels", "SEDC.Notes.RequestModels\SEDC.Notes.RequestModels.csproj", "{4FA41985-475F-4464-ACB6-06E1CF5E5CD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.IoC", "SEDC.Notes.IoC\SEDC.Notes.IoC.csproj", "{8845BD01-A3FF-4C87-9612-41AF122F5F49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4FA41985-475F-4464-ACB6-06E1CF5E5CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FA41985-475F-4464-ACB6-06E1CF5E5CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA41985-475F-4464-ACB6-06E1CF5E5CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

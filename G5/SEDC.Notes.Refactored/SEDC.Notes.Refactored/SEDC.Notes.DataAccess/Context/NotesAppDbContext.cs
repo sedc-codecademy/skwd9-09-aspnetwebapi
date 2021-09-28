@@ -15,5 +15,17 @@ namespace SEDC.Notes.DataAccess.Context
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            // (user <=> note) one to many
+            modelBuilder.Entity<Note>()
+                        .HasOne(x => x.User)
+                        .WithMany(x => x.Notes)
+                        .HasForeignKey(x => x.UserId)
+                        .OnDelete(DeleteBehavior.Cascade);
+
+
+        }
     }
 }
