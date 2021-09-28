@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Dto.ValidationModels;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SEDC.NoteApp2.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -48,6 +50,7 @@ namespace SEDC.NoteApp2.API.Controllers
             return StatusCode(StatusCodes.Status200OK, user);
         }
 
+        [AllowAnonymous]
         [HttpPost("")]
         public ActionResult AddUser(RegisterUserDto userDto)
         {
@@ -76,6 +79,7 @@ namespace SEDC.NoteApp2.API.Controllers
             return StatusCode(StatusCodes.Status202Accepted);
         }
 
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public ActionResult<TokenDto> AuthenticateUser(LoginDto model)
         {

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace SEDC.NoteApp2.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DapperController : ControllerBase
@@ -106,6 +108,7 @@ namespace SEDC.NoteApp2.API.Controllers
             return StatusCode(StatusCodes.Status200OK, userDto);
         }
 
+        [AllowAnonymous]
         [HttpPost("")]
         public ActionResult<int> CreateNewUser(UserDto userDto)
         {

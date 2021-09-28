@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Dto.ValidationModels;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SEDC.NoteApp2.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class NoteController : ControllerBase
