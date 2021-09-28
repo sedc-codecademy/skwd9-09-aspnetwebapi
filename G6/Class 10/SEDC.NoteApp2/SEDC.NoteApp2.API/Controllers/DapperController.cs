@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using SEDC.NoteApp2.Dto.Models;
+using SEDC.NoteApp2.Dto.ValidationModels;
+using SEDC.NoteApp2.Services.Interfaces;
+using SEDC.NoteApp2.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +19,13 @@ namespace SEDC.NoteApp2.API.Controllers
     [ApiController]
     public class DapperController : ControllerBase
     {
+        private IEntityValidationService _entityValidationService;
         private static readonly string _connectionString = "Server=.\\SQLEXPRESS;Database=Notes;Trusted_Connection=True;";
+
+        public DapperController(IEntityValidationService entityValidationService)
+        {
+            _entityValidationService = entityValidationService;
+        }
 
         [HttpGet("")]
         public ActionResult<List<UserDto>> GetAllUsers()
@@ -110,8 +119,15 @@ namespace SEDC.NoteApp2.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("")]
-        public ActionResult<int> CreateNewUser(UserDto userDto)
+        public ActionResult<int> CreateNewUser(RegisterUserDto userDto)
         {
+            ValidationResponse validationResponse = _entityValidationService.ValidateRegisterUser(userDto);
+
+            if (validationResponse.HasError)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, validationResponse);
+            }
+
             IDbConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
@@ -122,6 +138,7 @@ namespace SEDC.NoteApp2.API.Controllers
             parameters.Add("@firstName", userDto.FirstName);
             parameters.Add("@lastName", userDto.LastName);
             parameters.Add("@username", userDto.Username);
+            parameters.Add("@password", userDto.Password.GenerateMD5());
             parameters.Add("@address", userDto.Address);
             parameters.Add("@age", userDto.Age);
             parameters.Add("@id", dbType: DbType.Int32, direction: ParameterDirection.Output);
