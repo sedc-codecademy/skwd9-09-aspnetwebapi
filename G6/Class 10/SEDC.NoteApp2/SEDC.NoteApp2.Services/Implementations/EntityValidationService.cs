@@ -7,6 +7,7 @@ using SEDC.NoteApp2.Services.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SEDC.NoteApp2.Services.Implementations
 {
@@ -41,8 +42,13 @@ namespace SEDC.NoteApp2.Services.Implementations
             return ValidationResponse.CreateSuccessValidation();
         }
 
-        public ValidationResponse ValidateUser(UserDto userDto)
+        public ValidationResponse ValidateRegisterUser(RegisterUserDto userDto)
         {
+            if (!ValidPassword(userDto.Password))
+            {
+                return ValidationResponse.CreateErrorValidation($"Password does not meet complexity.");
+            }
+
             User user = userDto.ToUser();
             ValidationContext validationContext = new ValidationContext(user);
             List<ValidationResult> results = new List<ValidationResult>();
@@ -58,6 +64,13 @@ namespace SEDC.NoteApp2.Services.Implementations
             }
 
             return ValidationResponse.CreateSuccessValidation();
+        }
+
+        private static bool ValidPassword(string password)
+        {
+            Regex passwordRegex = new Regex("^(?=.*[0-9])(?=.*[a-z]).{6,20}$");
+            Match match = passwordRegex.Match(password);
+            return match.Success;
         }
     }
 }

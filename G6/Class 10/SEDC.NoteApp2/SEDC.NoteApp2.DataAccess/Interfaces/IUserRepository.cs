@@ -8,5 +8,6 @@ namespace SEDC.NoteApp2.DataAccess.Interfaces
         List<User> GetAllIncludeNotes();
         User GetByIdIncludeNotes(int userId);
         bool IsUsernameInUse(string username);
+        User GetUserByUsernameAndPassword(string username, string password);
     }
 }

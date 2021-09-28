@@ -58,6 +58,13 @@ namespace SEDC.NoteApp2.DataAccess.Repositories
                .FirstOrDefault(x => x.Id == id);
         }
 
+        public User GetUserByUsernameAndPassword(string username, string password)
+        {
+            return _notesAppDbContext
+                .Users
+                .SingleOrDefault(x => x.Username == username && x.Password == password);
+        }
+
         public bool IsUsernameInUse(string username)
         {
             return _notesAppDbContext
