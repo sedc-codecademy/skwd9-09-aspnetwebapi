@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SEDC.Orders.DAL.Context;
 using SEDC.Orders.DAL.DomainModels;
+using SEDC.Orders.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,13 @@ namespace SEDC.Orders.Entity.Controllers
 
         [HttpPost]
         [Route("CreateUser")]
-        public IActionResult CreateUser() 
+        public IActionResult CreateUser([FromBody] UserWithInfoRequestModel requestModel) 
         {
             var user = new User()
             {
-                FullName = "Viktor Jakovlev 2",
-                Username = "vjakovlev",
-                Password = "P@ssw0rd"
+                FullName = requestModel.FullName,
+                Username = requestModel.Username,
+                Password = requestModel.Password
             };
 
             var response = _ordersDb.Users.Add(user);
@@ -40,8 +41,8 @@ namespace SEDC.Orders.Entity.Controllers
 
             var userInfo = new UserInfo()
             {
-                FavouriteFood = "Pizza",
-                NumberOfOrders = 12,
+                FavouriteFood = requestModel.FavouriteFood,
+                NumberOfOrders = requestModel.NumberOfOrders,
                 UserId = response.Entity.Id
             };
 
