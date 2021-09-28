@@ -5,6 +5,7 @@ using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Dto.ValidationModels;
 using SEDC.NoteApp2.Services.Interfaces;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace SEDC.NoteApp2.API.Controllers
 {
@@ -91,6 +92,16 @@ namespace SEDC.NoteApp2.API.Controllers
             }
 
             return StatusCode(StatusCodes.Status200OK, token);
+        }
+
+        [HttpGet("whoami")]
+        public ActionResult<string> WhoAmI()
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            string username = User.FindFirst(ClaimTypes.Name).Value;
+            string userAddress = User.FindFirst("CustomClaimTypeUserAddress").Value;
+
+            return StatusCode(StatusCodes.Status200OK, $"{userId} - {username} ({userAddress})");
         }
     }
 }

@@ -46,7 +46,8 @@ namespace SEDC.NoteApp2.Services.Implementations
                     new[]
                     {
                         new Claim(ClaimTypes.Name, user.Username),
-                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                        new Claim("CustomClaimTypeUserAddress", user.Address)
                     }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
