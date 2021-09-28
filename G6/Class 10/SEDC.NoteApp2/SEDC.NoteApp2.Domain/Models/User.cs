@@ -11,6 +11,7 @@ namespace SEDC.NoteApp2.Domain.Models
         [Required]
         [MaxLength(20)]
         public string Username { get; set; }
+        public string Password { get; set; }
         public string Address { get; set; }
         public int Age { get; set; }
         public List<Note> Notes { get; set; }
