@@ -49,9 +49,9 @@ namespace SEDC.NoteApp2.API.Controllers
         }
 
         [HttpPost("")]
-        public ActionResult AddUser(UserDto userDto)
+        public ActionResult AddUser(RegisterUserDto userDto)
         {
-            ValidationResponse validationResponse = _entityValidationService.ValidateUser(userDto);
+            ValidationResponse validationResponse = _entityValidationService.ValidateRegisterUser(userDto);
 
             if (validationResponse.HasError)
             {

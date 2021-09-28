@@ -9,7 +9,7 @@ namespace SEDC.NoteApp2.Services.Interfaces
         List<UserDto> GetAllUsersIncludeNotes();
         UserDto GetUserById(int id);
         UserDto GetUserByIdIncludeNotes(int id);
-        void AddUser(UserDto userDto);
+        void AddUser(RegisterUserDto userDto);
         void UpdateUser(UserDto userDto);
         void DeleteUser(int id);
     }

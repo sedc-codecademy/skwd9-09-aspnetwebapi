@@ -16,7 +16,7 @@ namespace SEDC.NoteApp2.Services.Implementations
             _userRepository = userRepository;
         }
 
-        public void AddUser(UserDto userDto)
+        public void AddUser(RegisterUserDto userDto)
         {
             User user = userDto.ToUser();
             _userRepository.Add(user);
