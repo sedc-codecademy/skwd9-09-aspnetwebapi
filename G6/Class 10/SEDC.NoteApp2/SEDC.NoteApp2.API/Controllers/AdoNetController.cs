@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using SEDC.NoteApp2.Dto.Models;
+using SEDC.NoteApp2.Dto.ValidationModels;
+using SEDC.NoteApp2.Services.Interfaces;
 using SEDC.NoteApp2.Shared.Enums;
+using SEDC.NoteApp2.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +19,13 @@ namespace SEDC.NoteApp2.API.Controllers
     [ApiController]
     public class AdoNetController : ControllerBase
     {
+        private IEntityValidationService _entityValidationService;
         private static readonly string _connectionString = "Server=.\\SQLEXPRESS;Database=Notes;Trusted_Connection=True;";
+
+        public AdoNetController(IEntityValidationService entityValidationService)
+        {
+            _entityValidationService = entityValidationService;
+        }
 
         [HttpGet("")]
         public ActionResult<List<UserDto>> GetAllUsers()
@@ -216,8 +225,15 @@ namespace SEDC.NoteApp2.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("")]
-        public ActionResult<int> CreateNewUser(UserDto userDto)
+        public ActionResult<int> CreateNewUser(RegisterUserDto userDto)
         {
+            ValidationResponse validationResponse = _entityValidationService.ValidateRegisterUser(userDto);
+
+            if (validationResponse.HasError)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, validationResponse);
+            }
+
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
@@ -235,6 +251,7 @@ namespace SEDC.NoteApp2.API.Controllers
                 cmd.Parameters.AddWithValue("@firstName", userDto.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", userDto.LastName);
                 cmd.Parameters.AddWithValue("@username", userDto.Username);
+                cmd.Parameters.AddWithValue("@password", userDto.Password.GenerateMD5());
                 cmd.Parameters.AddWithValue("@address", userDto.Address);
                 cmd.Parameters.AddWithValue("@age", userDto.Age);
 
