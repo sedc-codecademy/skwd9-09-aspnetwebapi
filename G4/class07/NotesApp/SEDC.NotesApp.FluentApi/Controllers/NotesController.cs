@@ -50,5 +50,71 @@ namespace SEDC.NotesApp.FluentApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong");
             }
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] NoteModel noteModel)
+        {
+            try
+            {
+                _noteService.AddNote(noteModel);
+                return StatusCode(StatusCodes.Status201Created, "Note Created");
+            }
+            catch (NotFoundException e)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, e.Message);
+            }
+            catch (NoteException e)
+            {
+                //log
+                return StatusCode(StatusCodes.Status400BadRequest, e.Message);
+            }
+            catch
+            {
+                //log
+                return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong!");
+            }
+        }
+        [HttpPut]
+        public IActionResult Put([FromBody] NoteModel noteModel)
+        {
+            try
+            {
+                _noteService.UpdateNote(noteModel);
+                return StatusCode(StatusCodes.Status204NoContent, "Note updated");
+            }
+            catch (NotFoundException e)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, e.Message);
+            }
+            catch (NoteException e)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, e.Message);
+            }
+            catch (Exception e)
+            {
+                //log
+                return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong!");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _noteService.DeleteNote(id);
+                return StatusCode(StatusCodes.Status204NoContent, "Note Deleted");
+            }
+            catch (NotFoundException e)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, e.Message);
+            }
+            catch (Exception e)
+            {
+                //log
+                return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong!");
+            }
+
+        }
     }
 }
