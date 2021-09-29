@@ -22,12 +22,12 @@ namespace SEDC.NotesApp.Services.Helpers
             //services.AddTransient<IRepository<User>>(x => new UserRepositoryADO(connectionString));
 
             //Registering repository - Dapper
-            services.AddTransient<IRepository<Note>>(x => new NoteRepositoryDapper(connectionString));
-            services.AddTransient<IRepository<User>>(x => new UserRepositoryDapper(connectionString));
+            //services.AddTransient<IRepository<Note>>(x => new NoteRepositoryDapper(connectionString));
+            //services.AddTransient<IRepository<User>>(x => new UserRepositoryDapper(connectionString));
 
             //Registering repository  - EntityFramework
-            //services.AddTransient<IRepository<Note>, NoteRepository>();
-            //services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<IRepository<Note>, NoteRepository>();
+            services.AddTransient<IRepository<User>, UserRepository>();
 
             return services;
         }

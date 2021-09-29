@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SEDC.NotesApp.Models;
 using SEDC.NotesApp.Services.Interface;
 using System;
@@ -18,6 +19,7 @@ namespace SEDC.NotesApp.Api.Controllers
         }
 
         [HttpGet("getAllNotes/{userId}")]
+        [Authorize]
         public ActionResult<List<NoteModel>> GetAllNotes(int userId)
         {
             return _noteService.GetUserNotes(userId);
