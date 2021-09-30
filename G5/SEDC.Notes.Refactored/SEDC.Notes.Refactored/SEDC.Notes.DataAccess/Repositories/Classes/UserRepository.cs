@@ -1,4 +1,5 @@
-﻿using SEDC.Notes.DataAccess.Repositories.Interfaces;
+﻿using SEDC.Notes.DataAccess.Context;
+using SEDC.Notes.DataAccess.Repositories.Interfaces;
 using SEDC.Notes.DomainModels;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,35 @@ namespace SEDC.Notes.DataAccess.Repositories.Classes
 {
     public class UserRepository : IRepository<User>
     {
+        private readonly NotesAppDbContext _context;
+
+        public UserRepository(NotesAppDbContext context)
+        {
+            _context = context;
+        }
+
+
         public void Add(User entity)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            _context.Users.Remove(entity);
+            _context.SaveChanges();
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users;
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            _context.Users.Update(entity);
+            _context.SaveChanges();
         }
     }
 }
