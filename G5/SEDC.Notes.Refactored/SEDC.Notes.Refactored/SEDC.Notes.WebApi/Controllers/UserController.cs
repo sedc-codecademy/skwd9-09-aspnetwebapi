@@ -19,6 +19,14 @@ namespace SEDC.Notes.WebApi.Controllers
             _userService = userService;
         }
 
+        [HttpPost]
+        [Route("authenticate")]
+        public IActionResult Authenticate([FromBody] LoginRequestModel requestModel) 
+        {
+            var user = _userService.Authenticate(requestModel);
+            return Ok(user);        
+        }
+
 
         [HttpPost]
         [Route("register")]
