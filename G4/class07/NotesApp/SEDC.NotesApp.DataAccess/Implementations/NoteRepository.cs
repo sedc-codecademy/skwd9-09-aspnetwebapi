@@ -27,7 +27,7 @@ namespace SEDC.NotesApp.DataAccess.Implementations
         }
 
         public List<Note> GetAll()
-        {
+        {                       
             return _notesAppDbContext
                 .Notes
                 .Include(x => x.User)

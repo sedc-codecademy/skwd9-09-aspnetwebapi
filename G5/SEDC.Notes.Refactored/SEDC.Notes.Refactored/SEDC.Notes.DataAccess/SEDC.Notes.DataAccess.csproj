@@ -5,14 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Repositories\Classes\UserRepository.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Repositories\Classes\UserRepository.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SEDC.Notes.DomainModels\SEDC.Notes.DomainModels.csproj" />
   </ItemGroup>
 
