@@ -31,7 +31,7 @@ namespace SEDC.Notes.IoC
 
             //regioster services
             services.AddTransient<IUserService, UserService>();
-
+            services.AddTransient<INoteService, NoteService>();
 
             return services;
         }
