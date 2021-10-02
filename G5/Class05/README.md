@@ -62,7 +62,7 @@ var md5Data = md5.ComputeHash(Encoding.ASCII.GetBytes(password));
 var hashedPassword = Encoding.ASCII.GetString(md5Data);
 // We look for a user with username and password ( hash )
 var user = _userRepository.GetAll().SingleOrDefault(x => x.Username == username && x.Password == hashedPassword);
-// If no user is available return null
+// If no user is available return null 
 if (user == null)
     return null;
 ```
