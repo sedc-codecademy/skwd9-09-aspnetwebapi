@@ -1,4 +1,5 @@
 ﻿using SEDC.NotesApp.DataAccess;
+using SEDC.NotesApp.DataAccess.Implementations;
 using SEDC.NotesApp.Domain.Models;
 using SEDC.NotesApp.Mappers;
 using SEDC.NotesApp.Models;
@@ -13,9 +14,49 @@ namespace SEDC.NotesApp.Services.Implementations
     public class NoteService : INoteService 
     {
         private IRepository<Note> _noteRepository;
-        public NoteService(IRepository<Note> noteRepository)
+        private IRepository<User> _userRepository;
+        public NoteService(IRepository<Note> noteRepository, IRepository<User> userRepository)
         {
             _noteRepository = noteRepository;
+            _userRepository = userRepository;
+        }
+
+        public void AddNote(NoteModel noteModel)
+        {
+            User userDb = _userRepository.GetById(noteModel.UserId);
+            if(userDb == null)
+            {
+                throw new NotFoundException($"The user with Id {noteModel.UserId} was not found");
+            }
+            if(string.IsNullOrEmpty(noteModel.Text))
+            {
+                throw new NoteException("The property Text for note is required");
+            }
+            if (noteModel.Text.Length > 100)
+            {
+                throw new NoteException("The property Text can't contain more then 100 characters");
+            }
+            if(noteModel.Color.Length > 30)
+            {
+                throw new NoteException("The property Color can't contain more then 30 characters");
+            }
+            if (noteModel.Id != 0)
+            {
+                throw new NoteException("Id must not be set!");
+            }
+            Note noteForDb = noteModel.ToNote();
+            noteForDb.User = userDb;
+            _noteRepository.Add(noteForDb);
+        }
+
+        public void DeleteNote(int id)
+        {
+            Note noteDb = _noteRepository.GetById(id);
+            if(noteDb == null)
+            {
+                throw new NotFoundException($"Note with id {id} was not found");
+            }
+            _noteRepository.Delete(noteDb);
         }
 
         public List<NoteModel> GetAllNotes()
@@ -38,6 +79,39 @@ namespace SEDC.NotesApp.Services.Implementations
             }
 
             return noteDb.ToNoteModel();
+        }
+
+        public void UpdateNote(NoteModel noteModel)
+        {
+            Note noteDb = _noteRepository.GetById(noteModel.Id);
+            if (noteDb == null)
+            {
+                throw new NotFoundException($"Note with id {noteModel.Id} was not found!");
+            }
+            User userDb = _userRepository.GetById(noteModel.UserId);
+            if (userDb == null)
+            {
+                throw new NotFoundException($"The user with id {noteModel.UserId} was not found");
+            }
+            if (string.IsNullOrEmpty(noteModel.Text))
+            {
+                throw new NoteException("The property Text for note is required");
+            }
+            if (noteModel.Text.Length > 100)
+            {
+                throw new NoteException("The property Text can not contain more than 100 characters");
+            }
+            if (!string.IsNullOrEmpty(noteModel.Color) && noteModel.Color.Length > 30)
+            {
+                throw new NoteException("The property Color can not contain more than 30 characters");
+            }
+
+            noteDb.Text = noteModel.Text;
+            noteDb.Color = noteModel.Color;
+            noteDb.Tag = noteModel.Tag;
+            noteDb.UserId = noteModel.UserId;
+            noteDb.User = userDb;
+            _noteRepository.Update(noteDb);
         }
     }
 }

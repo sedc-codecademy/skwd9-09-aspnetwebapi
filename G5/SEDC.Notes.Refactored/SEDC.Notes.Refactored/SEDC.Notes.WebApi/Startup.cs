@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,16 +7,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using SEDC.Notes.IoC;
-using SEDC.Notes.WebApi.Configuration;
+using SEDC.Notes.Services.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SEDC.Notes.WebApi
 {
     //Microsoft.EntityFrameworkCore.Design
+    //Microsoft.AspNetCore.Authentication.JwtBearer
     public class Startup
     {
         public IConfiguration _configuration { get; }
@@ -45,6 +49,25 @@ namespace SEDC.Notes.WebApi
             });
 
             services.AddControllers();
+
+            var secret = Encoding.ASCII.GetBytes(databaseOptions.Secret);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secret),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             IoCContainer.ConfigureIoCContainer(services, databaseOptions.NotesAppConnectionString);
         }
