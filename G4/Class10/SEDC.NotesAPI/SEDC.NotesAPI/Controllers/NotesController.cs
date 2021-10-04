@@ -94,10 +94,10 @@ namespace SEDC.NotesAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, e.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //log
-                return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong!");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -116,10 +116,10 @@ namespace SEDC.NotesAPI.Controllers
             catch (Exception e)
             {
                 //log
-                return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong!");
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
         }
     }
 }
-}
+
