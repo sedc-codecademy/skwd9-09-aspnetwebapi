@@ -50,7 +50,6 @@ namespace SEDC.Notes.Services.Classes
                         new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
                         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                     }    
-                    
                 ),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
