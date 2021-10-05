@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SEDC.Notes.Common.Exceptions;
 using SEDC.Notes.RequestModels;
 using SEDC.Notes.Services.Interfaces;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,30 +29,85 @@ namespace SEDC.Notes.WebApi.Controllers
         [Route("CreateNote")]
         public IActionResult CreateNote([FromBody] NoteRequestModel requestModel)
         {
-            requestModel.UserId = GetAuthorziedUserId();
-            _noteService.AddNote(requestModel);
+            try
+            {
+                requestModel.UserId = GetAuthorziedUserId();
+                _noteService.AddNote(requestModel);
 
-            return Ok();
+                Log.Information($"Note succesffuly created date: {DateTime.UtcNow}");
+                return Ok();
+            }
+            catch (UserException ex)
+            {
+                Log.Error("USER {userId}.{name}: {message}", ex.UserId, ex.Name, ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NoteException ex) 
+            {
+                Log.Error("NOTE {noteId} for user {userId}: {message}", ex.NoteId, ex.UserId, ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
         }
 
         [HttpGet]
         [Route("GetNotes")]
         public IActionResult GetNotes() 
         {
-            var userId = GetAuthorziedUserId();
-            var response = _noteService.GetUserNotes(userId);
+            try
+            {
+                var userId = GetAuthorziedUserId();
+                var response = _noteService.GetUserNotes(userId);
 
-            return Ok(response);
+                Log.Information($"Note succesffuly retrieved notes on {DateTime.UtcNow}");
+                return Ok(response);
+            }
+            catch (UserException ex)
+            {
+                Log.Error("USER {userId}.{name}: {message}", ex.UserId, ex.Name, ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NoteException ex)
+            {
+                Log.Error("NOTE {noteId} for user {userId}: {message}", ex.NoteId, ex.UserId, ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
         }
 
         [HttpGet]
         [Route("GetNoteById")]
         public IActionResult GetNoteById([FromQuery] int id) 
         {
-            var userId = GetAuthorziedUserId();
-            var response = _noteService.GetUserNoteById(userId, id);
-
-            return Ok(response);
+            try
+            {
+                var userId = GetAuthorziedUserId();
+                var response = _noteService.GetUserNoteById(userId, id);
+                return Ok(response);
+            }
+            catch (UserException ex)
+            {
+                Log.Error("USER {userId}.{name}: {message}", ex.UserId, ex.Name, ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NoteException ex)
+            {
+                Log.Error("NOTE {noteId} for user {userId}: {message}", ex.NoteId, ex.UserId, ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
         }
 
 
@@ -58,10 +115,27 @@ namespace SEDC.Notes.WebApi.Controllers
         [Route("DeleteNoteById")]
         public IActionResult DeleteNoteById([FromQuery] int id) 
         {
-            var userId = GetAuthorziedUserId();
-            _noteService.DeleteNoteById(userId, id);
-
-            return Ok();
+            try
+            {
+                var userId = GetAuthorziedUserId();
+                _noteService.DeleteNoteById(userId, id);
+                return Ok();
+            }
+            catch (UserException ex)
+            {
+                Log.Error("USER {userId}.{name}: {message}", ex.UserId, ex.Name, ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NoteException ex)
+            {
+                Log.Error("NOTE {noteId} for user {userId}: {message}", ex.NoteId, ex.UserId, ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
         }
 
 
@@ -69,8 +143,39 @@ namespace SEDC.Notes.WebApi.Controllers
         [Route("UpdateNote")]
         public IActionResult UpdateNote([FromBody] NoteRequestModel requestModel) 
         {
-            requestModel.UserId = GetAuthorziedUserId();
-            _noteService.UpdateNote(requestModel);
+            try
+            {
+                requestModel.UserId = GetAuthorziedUserId();
+                _noteService.UpdateNote(requestModel);
+                return Ok();
+            }
+            catch (UserException ex)
+            {
+                Log.Error("USER {userId}.{name}: {message}", ex.UserId, ex.Name, ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NoteException ex)
+            {
+                Log.Error("NOTE {noteId} for user {userId}: {message}", ex.NoteId, ex.UserId, ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("testLogger")]
+        public IActionResult TestLogger()
+        {
+            Log.Information("text about infgormation log!");
+
+            Log.Warning("text about warning log!");
+
+            Log.Error("text about ERROR log!");
 
             return Ok();
         }
@@ -83,8 +188,7 @@ namespace SEDC.Notes.WebApi.Controllers
             if (!userIdExists) 
             {
                 string name = User.FindFirst(ClaimTypes.Name)?.Value;
-                throw new Exception("Name identifier claim does not exist!");
-                
+                throw new UserException(userId, name, "Name identifier claim does not exist!");
             }
 
             return userId;

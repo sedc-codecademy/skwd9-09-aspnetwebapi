@@ -1,5 +1,7 @@
-﻿using SEDC.Notes.DataAccess.Repositories.Interfaces;
+﻿using SEDC.Notes.Common.Exceptions;
+using SEDC.Notes.DataAccess.Repositories.Interfaces;
 using SEDC.Notes.DomainModels;
+using SEDC.Notes.Mapper;
 using SEDC.Notes.RequestModels;
 using SEDC.Notes.RequestModels.Enums;
 using SEDC.Notes.Services.Interfaces;
@@ -21,37 +23,35 @@ namespace SEDC.Notes.Services.Classes
 
         public void AddNote(NoteRequestModel requestModel)
         {
-            // we will do validation later!
-
-            var Note = new Note()
+            if (string.IsNullOrEmpty(requestModel.Text)) 
             {
-                Text = requestModel.Text,
-                Color = requestModel.Color,
-                Tag = (int)requestModel.Tag,
-                UserId = requestModel.UserId
-            };
+                throw new NoteException(requestModel.Id, requestModel.UserId, "Text field is requred!");
+            }
 
+            if (string.IsNullOrEmpty(requestModel.Color))
+            {
+                throw new NoteException(requestModel.Id, requestModel.UserId, "Color field is requred!");
+            }
+
+            var Note = NoteMapper.MapToNote(requestModel);
             _noteRepository.Add(Note);
         }
 
         public IEnumerable<NoteRequestModel> GetUserNotes(int userId)
-        {
+        {     
             var userNotes = _noteRepository.GetAll()
                                            .Where(x => x.UserId == userId);
+
+            if (userNotes == null)
+            {
+                throw new NoteException();
+            }
 
             var notesRequestModel = new List<NoteRequestModel>();
 
             foreach (var note in userNotes)
             {
-                var noteRequestModel = new NoteRequestModel()
-                {
-                    Id = note.Id,
-                    Text = note.Text,
-                    Color = note.Color,
-                    Tag = (TagType)note.Tag,
-                    UserId = note.UserId
-                };
-
+                var noteRequestModel = NoteMapper.MapToNoteRequestModel(note);
                 notesRequestModel.Add(noteRequestModel);
             }
 
@@ -59,16 +59,7 @@ namespace SEDC.Notes.Services.Classes
 
             //return _noteRepository.GetAll()
             //                      .Where(x => x.UserId == userId)
-            //                      .Select(x =>
-            //                        new NoteRequestModel()
-            //                        {
-            //                            Id = x.Id,
-            //                            Text =  x.Text,
-            //                            Color = x.Color,
-            //                            Tag = (TagType)x.Tag,
-            //                            UserId = x.UserId
-            //                        }
-            //                      );
+            //                      .Select(x => NoteMapper.MapToNoteRequestModel(x));
         }
 
         public NoteRequestModel GetUserNoteById(int userId, int id)
@@ -76,18 +67,12 @@ namespace SEDC.Notes.Services.Classes
             var note = _noteRepository.GetAll()
                                       .SingleOrDefault(x => x.UserId == userId && x.Id == id);
 
-            //validation
-
-            var noteRequestModel = new NoteRequestModel()
+            if (note == null) 
             {
-                Id = note.Id,
-                Text = note.Text,
-                Color = note.Color,
-                Tag = (TagType)note.Tag,
-                UserId = note.UserId
-            };
+                throw new NoteException(id, userId, "Note not found!");
+            }
 
-            return noteRequestModel;
+            return NoteMapper.MapToNoteRequestModel(note);
         }
 
         public void DeleteNoteById(int userId, int id)
@@ -95,7 +80,10 @@ namespace SEDC.Notes.Services.Classes
             var note = _noteRepository.GetAll()
                                       .SingleOrDefault(x => x.UserId == userId && x.Id == id);
 
-            //validation
+            if (note == null)
+            {
+                throw new NoteException(id, userId, "Note not found!");
+            }
 
             _noteRepository.Delete(note);
         }
@@ -104,6 +92,11 @@ namespace SEDC.Notes.Services.Classes
         {
             var note = _noteRepository.GetAll()
                                       .SingleOrDefault(x => x.UserId == requestModel.UserId && x.Id == requestModel.Id);
+
+            if (note == null)
+            {
+                throw new NoteException(note.Id, note.UserId, "Note not found!");
+            }
 
             if (!string.IsNullOrEmpty(requestModel.Text)) 
             {
