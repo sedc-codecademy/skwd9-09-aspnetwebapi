@@ -104,6 +104,7 @@ namespace SEDC.NoteApp2.API.Controllers
             return StatusCode(StatusCodes.Status200OK, $"{userId} - {username} ({userAddress})");
         }
 
+        // Class 10
         // TODO: Add ChangeUserPassword logic
         // TODO: Additional Complexity without sending userId from QueryParams nor RequestBody
     }
