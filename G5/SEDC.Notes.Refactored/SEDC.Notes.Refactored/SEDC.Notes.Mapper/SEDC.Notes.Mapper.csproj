@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SEDC.Notes.DomainModels\SEDC.Notes.DomainModels.csproj" />
+    <ProjectReference Include="..\SEDC.Notes.RequestModels\SEDC.Notes.RequestModels.csproj" />
+  </ItemGroup>
+
+</Project>

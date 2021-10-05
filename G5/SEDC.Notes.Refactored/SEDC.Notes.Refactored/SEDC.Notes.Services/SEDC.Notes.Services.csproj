@@ -9,8 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SEDC.Notes.Common\SEDC.Notes.Common.csproj" />
     <ProjectReference Include="..\SEDC.Notes.DataAccess\SEDC.Notes.DataAccess.csproj" />
     <ProjectReference Include="..\SEDC.Notes.DomainModels\SEDC.Notes.DomainModels.csproj" />
+    <ProjectReference Include="..\SEDC.Notes.Mapper\SEDC.Notes.Mapper.csproj" />
     <ProjectReference Include="..\SEDC.Notes.RequestModels\SEDC.Notes.RequestModels.csproj" />
   </ItemGroup>
 
