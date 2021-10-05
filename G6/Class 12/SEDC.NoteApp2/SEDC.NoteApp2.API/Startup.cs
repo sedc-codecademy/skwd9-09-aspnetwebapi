@@ -12,6 +12,7 @@ using SEDC.NoteApp2.DataAccess.Repositories;
 using SEDC.NoteApp2.Domain;
 using SEDC.NoteApp2.Services.Implementations;
 using SEDC.NoteApp2.Services.Interfaces;
+using SEDC.NoteApp2.Shared;
 using System.Collections.Generic;
 using System.Text;
 
@@ -31,8 +32,12 @@ namespace SEDC.NoteApp2.API
         {
             services.AddControllers();
 
+            IConfigurationSection appConfig = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appConfig);
+            AppSettings appSettings = appConfig.Get<AppSettings>();
+
             services.AddDbContext<NotesDbContext>(
-                options => options.UseSqlServer("Server=.\\SQLEXPRESS;Database=Notes;Trusted_Connection=True;")
+                options => options.UseSqlServer(appSettings.NotesDbConnectionString)
                 );
 
             services.AddAuthentication(
@@ -50,7 +55,7 @@ namespace SEDC.NoteApp2.API
                     new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("v9pU6HkfcZst3ksP")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.Secret)),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
@@ -70,7 +75,7 @@ namespace SEDC.NoteApp2.API
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using Bearer Scheme.",
-                    Type= SecuritySchemeType.Http,
+                    Type = SecuritySchemeType.Http,
                     Scheme = "bearer"
                 });
 

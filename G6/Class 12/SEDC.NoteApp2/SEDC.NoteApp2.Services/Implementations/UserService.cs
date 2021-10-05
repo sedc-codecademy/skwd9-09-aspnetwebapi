@@ -1,9 +1,11 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using SEDC.NoteApp2.DataAccess.Interfaces;
 using SEDC.NoteApp2.Domain.Models;
 using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Mappers;
 using SEDC.NoteApp2.Services.Interfaces;
+using SEDC.NoteApp2.Shared;
 using SEDC.NoteApp2.Shared.Helpers;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,12 @@ namespace SEDC.NoteApp2.Services.Implementations
     public class UserService : IUserService
     {
         private IUserRepository _userRepository;
+        private IOptions<AppSettings> _options;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IOptions<AppSettings> options)
         {
             _userRepository = userRepository;
+            _options = options;
         }
 
         public void AddUser(RegisterUserDto userDto)
@@ -38,7 +42,7 @@ namespace SEDC.NoteApp2.Services.Implementations
             }
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            byte[] key = Encoding.ASCII.GetBytes("v9pU6HkfcZst3ksP");
+            byte[] key = Encoding.ASCII.GetBytes(_options.Value.Secret);
 
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor()
             {
