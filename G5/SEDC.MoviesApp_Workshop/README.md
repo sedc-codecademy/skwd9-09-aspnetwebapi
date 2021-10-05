@@ -33,7 +33,7 @@ Introduce a new entity into the web api implementation for Users. There should b
 A user contains:
 * Id
 * Username
-* Password
+* Password (Hashed)
 * First Name
 * Last Name
 * Favorite Genre
@@ -63,3 +63,10 @@ Implement entity framework in the solution and switch the database from CashDb t
 - Create new repositories that will inherit from the generic one. 
 - Implement all the methods from the interface with the entity framework implementation. (use the dbcontext class instead of the CashDb) 
 - Switch the implementation of the interfaces in the startap class from CashDb to the newly created entity framework repositories.
+
+## Part 3
+
+- Implement authenticatioin/authorization with tokens
+- Authorize the needed endpoints
+- Implement Exceptions
+- Implement logs
