@@ -33,5 +33,59 @@ namespace SEDC.NoteApp2.Tests
             Assert.IsNotNull(result);
             Assert.IsTrue(!string.IsNullOrEmpty(result.Token));
         }
+
+        [TestMethod]
+        public void Authenticate_InvalidUsernamePassword_Null()
+        {
+            // Arrange
+            IOptions<AppSettings> options =
+                Options.Create(
+                    new AppSettings
+                    {
+                        Secret = "DkYzU7ypt2UhywG3"
+                    });
+
+            IUserService userService = new UserService(new FakeUserRepository(), options);
+            string username = "NonExisting";
+            string password = "1235456789876543";
+
+            // Act
+            TokenDto result = userService.Authenticate(username, password);
+
+            // Assert
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void Register_ValidData_RegisterUser()
+        {
+            // Arrange
+            IOptions<AppSettings> options =
+                Options.Create(
+                    new AppSettings
+                    {
+                        Secret = "DkYzU7ypt2UhywG3"
+                    });
+
+            IUserService userService = new UserService(new FakeUserRepository(), options);
+
+            RegisterUserDto registerUserDto = new RegisterUserDto()
+            {
+                Id = 10,
+                FirstName = "Greg",
+                Password = "123456greg",
+                Username = "gregsuper",
+                Address = "Macedonia",
+                Age = 30,
+            };
+
+            // Act
+            userService.AddUser(registerUserDto);
+
+            // Assert
+            UserDto userDto = userService.GetUserById(registerUserDto.Id);
+            Assert.AreEqual(registerUserDto.FirstName, userDto.FirstName);
+            Assert.AreEqual(registerUserDto.LastName, userDto.LastName);
+        }
     }
 }
