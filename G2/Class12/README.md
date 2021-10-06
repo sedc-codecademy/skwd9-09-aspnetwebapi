@@ -50,6 +50,7 @@ Our next step is to implement JWT authentication in our app.
 * Configure the application to use JWT token authentication
 * Implement managing users because of this purpose ( User entities and the necessary architecture)
 * Impelement user registration and login
+* The password must be protected (we shouldn't keep the raw password value in the db)
 * Each user can have a role. The possible roles are: SuperAdmin, Admin and User
 * Add claims for id, role and username to the token
 * Only a logged in user can get all the movies and a movie by id.
