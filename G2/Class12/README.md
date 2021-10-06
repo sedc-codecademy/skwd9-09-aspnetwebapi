@@ -53,7 +53,7 @@ Our next step is to implement JWT authentication in our app.
 * Each user can have a role. The possible roles are: SuperAdmin, Admin and User
 * Add claims for id, role and username to the token
 * Only a logged in user can get all the movies and a movie by id.
-* Only admins can create and update users.
+* Only admins can create and update movies.
 * Only a user with username superadmin can delete a movie
 * The method for filtering by genre and/or year can be accessed by anyone, the user doesn't have to be logged in.
 
