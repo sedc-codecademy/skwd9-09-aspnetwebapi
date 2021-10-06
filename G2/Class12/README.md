@@ -57,7 +57,7 @@ Our next step is to implement JWT authentication in our app.
 * Only a user with username superadmin can delete a movie
 * The method for filtering by genre and/or year can be accessed by anyone, the user doesn't have to be logged in.
 
-** Bonus 
+### Bonus 
 Impelement movie reservation. 
 * Each movie can be reserved by multiple users, each user can reserve multiple movies.
 * Upgrade the GetAll method to return only the movies reserved by the logged in user, using the id from the token's claim.
