@@ -5,15 +5,19 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Notes.WebApi", "SEDC.Notes.WebApi\SEDC.Notes.WebApi.csproj", "{58C120F3-265C-4F9E-B27B-A1CB3C1FE45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.DataAccess", "SEDC.Notes.DataAccess\SEDC.Notes.DataAccess.csproj", "{55DDDEBB-4655-4A51-965D-B17590AB1A0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Notes.DataAccess", "SEDC.Notes.DataAccess\SEDC.Notes.DataAccess.csproj", "{55DDDEBB-4655-4A51-965D-B17590AB1A0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.DomainModels", "SEDC.Notes.DomainModels\SEDC.Notes.DomainModels.csproj", "{A9D80AEF-2842-41E4-B2B6-0614CBBBED6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Notes.DomainModels", "SEDC.Notes.DomainModels\SEDC.Notes.DomainModels.csproj", "{A9D80AEF-2842-41E4-B2B6-0614CBBBED6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.Services", "SEDC.Notes.Services\SEDC.Notes.Services.csproj", "{73764773-850A-4340-B730-AC9A80538F1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Notes.Services", "SEDC.Notes.Services\SEDC.Notes.Services.csproj", "{73764773-850A-4340-B730-AC9A80538F1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.RequestModels", "SEDC.Notes.RequestModels\SEDC.Notes.RequestModels.csproj", "{4FA41985-475F-4464-ACB6-06E1CF5E5CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Notes.RequestModels", "SEDC.Notes.RequestModels\SEDC.Notes.RequestModels.csproj", "{4FA41985-475F-4464-ACB6-06E1CF5E5CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.IoC", "SEDC.Notes.IoC\SEDC.Notes.IoC.csproj", "{8845BD01-A3FF-4C87-9612-41AF122F5F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Notes.IoC", "SEDC.Notes.IoC\SEDC.Notes.IoC.csproj", "{8845BD01-A3FF-4C87-9612-41AF122F5F49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.Mapper", "SEDC.Notes.Mapper\SEDC.Notes.Mapper.csproj", "{0F310022-8557-48D3-ABCC-10D49B106F42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Notes.Common", "SEDC.Notes.Common\SEDC.Notes.Common.csproj", "{0107C5C7-ADA2-4E6D-A9C0-D7CFB5BF5F26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8845BD01-A3FF-4C87-9612-41AF122F5F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F310022-8557-48D3-ABCC-10D49B106F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F310022-8557-48D3-ABCC-10D49B106F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F310022-8557-48D3-ABCC-10D49B106F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F310022-8557-48D3-ABCC-10D49B106F42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0107C5C7-ADA2-4E6D-A9C0-D7CFB5BF5F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0107C5C7-ADA2-4E6D-A9C0-D7CFB5BF5F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0107C5C7-ADA2-4E6D-A9C0-D7CFB5BF5F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0107C5C7-ADA2-4E6D-A9C0-D7CFB5BF5F26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
