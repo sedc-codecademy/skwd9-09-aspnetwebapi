@@ -5,6 +5,7 @@ using SEDC.NoteApp2.Dto.Models;
 using SEDC.NoteApp2.Dto.ValidationModels;
 using SEDC.NoteApp2.Services.Interfaces;
 using SEDC.NoteApp2.Shared.Exceptions;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -48,10 +49,12 @@ namespace SEDC.NoteApp2.API.Controllers
             }
             catch (NoteException noteEx)
             {
+                Log.Warning(noteEx, $"Note with id: {id} has NoteException.");
                 return StatusCode(StatusCodes.Status404NotFound, noteEx.Message);
             }
             catch (Exception ex)
             {
+                Log.Error(ex, $"Note with id: {id} has Exception.");
                 return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
             }
         }
