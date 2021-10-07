@@ -102,9 +102,10 @@ namespace SEDC.NoteApp2.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SEDC.NoteApp2.API v1"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SEDC.NoteApp2.API v1"));
 
             app.UseHttpsRedirection();
 
