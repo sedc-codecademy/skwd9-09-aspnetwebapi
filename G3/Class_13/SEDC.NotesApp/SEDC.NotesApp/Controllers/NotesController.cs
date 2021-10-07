@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SEDC.NotesApp.Models.DtoModels;
 using SEDC.NotesApp.Services.Interfaces;
 using SEDC.NotesApp.Shared.Exceptions;
+using Serilog;
 
 namespace SEDC.NotesApp.Controllers
 {
@@ -62,6 +63,7 @@ namespace SEDC.NotesApp.Controllers
             }
             catch (BadRequestException ex)
             {
+                Log.Error(ex.Message);
                 return BadRequest(ex.Message);
             }
             catch (Exception ex)
@@ -81,6 +83,7 @@ namespace SEDC.NotesApp.Controllers
             }
             catch (NoteExeption ex)
             {
+                Log.Error($"Note Id {id}, Message: {ex.Message}");
                 return StatusCode(StatusCodes.Status400BadRequest, new
                 {
                     Message = ex.Message,
