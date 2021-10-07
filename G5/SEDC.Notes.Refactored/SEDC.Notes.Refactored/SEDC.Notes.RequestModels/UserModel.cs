@@ -12,6 +12,6 @@ namespace SEDC.Notes.RequestModels
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";
         public string Token { get; set; }
-        public List<NoteModel> NoteList { get; set; }
+        public List<NoteRequestModel> NoteList { get; set; }
     }
 }
