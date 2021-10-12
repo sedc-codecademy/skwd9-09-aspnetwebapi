@@ -36,8 +36,7 @@ namespace SEDC.NoteApp2.API
                 {
                     builder.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
+                    .AllowAnyHeader();
                 });
             });
 
@@ -121,6 +120,7 @@ namespace SEDC.NoteApp2.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
