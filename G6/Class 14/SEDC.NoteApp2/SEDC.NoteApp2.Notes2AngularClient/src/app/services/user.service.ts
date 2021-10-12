@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { LoginDto } from '../models/login.model';
 import { TokenDto } from '../models/token.model';
-import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  userToken: string;
 
-  login(loginDto: LoginDto): Observable<TokenDto> {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router) { }
+
+  login(loginDto: LoginDto) {
     const path = environment.apiEndPoint + '/User/authenticate';
     const options = {
       headers: new HttpHeaders({
@@ -20,6 +24,14 @@ export class UserService {
       })
     }
 
-    return this.httpClient.post<TokenDto>(path, loginDto, options);
+    this.httpClient.post<TokenDto>(path, loginDto, options)
+      .subscribe(
+        (data: TokenDto) => {
+          this.userToken = data.token;
+          this.router.navigate(['notes']);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 }

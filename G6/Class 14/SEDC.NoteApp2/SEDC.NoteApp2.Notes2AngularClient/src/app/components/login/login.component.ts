@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginDto } from 'src/app/models/login.model';
-import { TokenDto } from 'src/app/models/token.model';
-import { UserService } from 'src/app/services/user.service';
+import { LoginDto } from './../../models/login.model';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -29,13 +28,6 @@ export class LoginComponent implements OnInit {
     loginDto.username = this.loginForm.value.username;
     loginDto.password = this.loginForm.value.password;
 
-    this.userService.login(loginDto)
-      .subscribe(
-        (data: TokenDto) => {
-          console.log("UserToken: ", data);
-        },
-        (error) => {
-          console.log(error);
-        })
+    this.userService.login(loginDto);
   }
 }
