@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
