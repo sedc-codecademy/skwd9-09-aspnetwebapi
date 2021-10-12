@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SEDC.Notes.Common.Exceptions;
 using SEDC.Notes.DataAccess.Repositories.Interfaces;
 using SEDC.Notes.DomainModels;
 using SEDC.Notes.RequestModels;
@@ -37,7 +38,10 @@ namespace SEDC.Notes.Services.Classes
                                         x.Username == requestModel.Username && 
                                         x.Password == hashedPassword);
 
-            if (user == null) return null;
+            if (user == null) 
+            {
+                return null;
+            }
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_options.Value.Secret);
@@ -74,7 +78,7 @@ namespace SEDC.Notes.Services.Classes
         {
             if (requestModel.Password != requestModel.ConfirmPassword) 
             {
-                //throw new Exception("Password did not match!");
+                throw new UserException("Password did not match!");
             }
 
             var hashedPassword = HashString(requestModel.Password);

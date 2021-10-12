@@ -12,6 +12,8 @@ namespace SEDC.Notes.Common.Exceptions
 
         public UserException() : base("There has been an inssue with a user!") {}
 
+        public UserException(string message) : base(message) {}
+
         public UserException(int? userId, string name) : base("There has been an inssue with a user!")
         {
             UserId = userId;
