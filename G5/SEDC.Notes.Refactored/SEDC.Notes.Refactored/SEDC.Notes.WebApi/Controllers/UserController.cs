@@ -32,7 +32,7 @@ namespace SEDC.Notes.WebApi.Controllers
             {
                 var user = _userService.Authenticate(requestModel);
 
-                if (user == null) 
+                if (user == null)
                 {
                     return NotFound("Username or Password is incorect!");
                 }
@@ -54,7 +54,7 @@ namespace SEDC.Notes.WebApi.Controllers
             try
             {
                 _userService.Register(requestModel);
-                return Ok();
+                return Ok("User sucesfully created.");
             }
             catch (UserException ex) 
             {

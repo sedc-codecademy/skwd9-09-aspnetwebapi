@@ -10,10 +10,21 @@ export class RegisterRequestModel {
         this.FirstName = firstName
         this.LastName = lastName
     }
-    
+
     Username : string
     Password : string
     ConfirmPassword : string
     FirstName : string
     LastName : string
+}
+
+export class LoginRequestModel {
+    constructor(username : string, 
+                password : string,) {
+        this.Username = username
+        this.Password = password
+    }
+
+    Username : string
+    Password : string
 }

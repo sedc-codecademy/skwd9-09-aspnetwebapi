@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterRequestModel } from 'src/app/models/auth.models';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent {
     ConfirmPassword: new FormControl('', Validators.required),
   })
 
-  constructor() { }
+  constructor(private _authService: AuthService) {}
 
   
   onSubmit() {
@@ -29,7 +30,17 @@ export class RegisterComponent {
 
     let registerRequestModel = new RegisterRequestModel(usernameValue, password, confirmPassword, firstName, lastName);
 
-    console.log(registerRequestModel)
+    this._authService.register(registerRequestModel).subscribe({
+      error: err => {
+        console.warn(err.error)
+        console.warn("error ocured")
+      },
+      complete: () => {
+        console.log("done")
+        // some redirect
+      }
+    })
+
   }
 
 
