@@ -1,0 +1,5 @@
+<div class="row">
+    <div *ngFor="let item of notesForUser; let i = index" class="col-md-12">
+        <p>Note #{{i+1}} {{item.text}}</p>
+    </div>
+</div>

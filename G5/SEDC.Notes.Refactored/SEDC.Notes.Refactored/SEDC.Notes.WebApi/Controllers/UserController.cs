@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SEDC.Notes.Common.Exceptions;
 using SEDC.Notes.RequestModels;
 using SEDC.Notes.Services.Interfaces;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +28,22 @@ namespace SEDC.Notes.WebApi.Controllers
         [Route("authenticate")]
         public IActionResult Authenticate([FromBody] LoginRequestModel requestModel) 
         {
-            var user = _userService.Authenticate(requestModel);
-            return Ok(user);        
+            try
+            {
+                var user = _userService.Authenticate(requestModel);
+
+                if (user == null)
+                {
+                    return NotFound("Username or Password is incorect!");
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
         }
 
         [AllowAnonymous]
@@ -35,8 +51,21 @@ namespace SEDC.Notes.WebApi.Controllers
         [Route("register")]
         public IActionResult Register([FromBody] RegisterRequestModel requestModel) 
         {
-            _userService.Register(requestModel);
-            return Ok();
+            try
+            {
+                _userService.Register(requestModel);
+                return Ok("User sucesfully created.");
+            }
+            catch (UserException ex) 
+            {
+                Log.Error(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UNKNOWN Error: {message}", ex.Message);
+                return BadRequest("Something went wrong. Please contact support!");
+            }
         }
     }
 }
