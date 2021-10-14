@@ -54,7 +54,7 @@ namespace SEDC.Notes.WebApi.Controllers
             try
             {
                 _userService.Register(requestModel);
-                return Ok("User sucesfully created.");
+                return Ok( new { message = "User sucesfully created." } );
             }
             catch (UserException ex) 
             {
