@@ -13,6 +13,8 @@ export class CreateNoteComponent implements OnInit {
 
   token: string = ""
 
+  serverMessage: string = ""
+
   createNoteForm = new FormGroup({
     Text: new FormControl('', Validators.required),
     Color: new FormControl('', Validators.required),
@@ -41,6 +43,9 @@ export class CreateNoteComponent implements OnInit {
     let noteRequestModel = new NoteRequestModel(text, color, parseInt(tagType))
 
     this._noteService.createNote(noteRequestModel, this.token).subscribe({
+      next: data => {
+        this.serverMessage = data.message;
+      },
       error: err => console.warn(err.error)
     })
   }

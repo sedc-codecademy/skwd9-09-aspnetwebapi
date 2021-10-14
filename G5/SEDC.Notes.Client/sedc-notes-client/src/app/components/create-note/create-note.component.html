@@ -7,5 +7,7 @@
         <input type="text" class="form-control me-2" formControlName="TagType" placeholder="TagType">
     
         <button type="submit" class="btn btn-primary">Create Note</button>
+
+        <p *ngIf="serverMessage">{{serverMessage}}</p>
     </div>
 </form>
