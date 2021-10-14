@@ -20,7 +20,7 @@ namespace SEDC.NoteApp2.API.Controllers
     public class DapperController : ControllerBase
     {
         private IEntityValidationService _entityValidationService;
-        private static readonly string _connectionString = "Server=.\\SQLEXPRESS;Database=Notes;Trusted_Connection=True;";
+        private static readonly string _connectionString = "Server=.\\SQLEXPRESS;Database=Notes;User Id=Notes2SQL;Password=xEHy54T4Cx4UD9cj;";
 
         public DapperController(IEntityValidationService entityValidationService)
         {
