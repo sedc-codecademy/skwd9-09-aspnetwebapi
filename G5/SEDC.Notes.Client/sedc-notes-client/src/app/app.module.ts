@@ -14,6 +14,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { CreateNoteComponent } from './components/create-note/create-note.component';
 import { NoteService } from './services/note.service';
+import { GetNotesComponent } from './components/get-notes/get-notes.component';
+import { NoteComponent } from './components/note/note.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NoteService } from './services/note.service';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CreateNoteComponent
+    CreateNoteComponent,
+    GetNotesComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,

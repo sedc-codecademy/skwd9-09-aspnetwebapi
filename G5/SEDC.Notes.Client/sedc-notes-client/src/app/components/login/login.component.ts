@@ -31,8 +31,6 @@ export class LoginComponent {
         localStorage.setItem("id", data.id)
         localStorage.setItem("fullname", data.fullName)
         localStorage.setItem("token", data.token)
-
-        console.log(data)
       },
       error: err => console.warn(err.error),
       complete: () => {
