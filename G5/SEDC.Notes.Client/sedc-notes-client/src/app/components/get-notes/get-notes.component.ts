@@ -38,4 +38,8 @@ export class GetNotesComponent implements OnInit {
       })
   }
 
+  refreshNotes() {
+    this.getNotes()
+  }
+
 }
