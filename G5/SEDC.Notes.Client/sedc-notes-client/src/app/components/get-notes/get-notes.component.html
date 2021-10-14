@@ -3,6 +3,8 @@
 
 <div class="card-container">
     <div *ngFor="let noteFromParent of notes" class="card-custom">   
-        <note [note]="noteFromParent"></note> 
+
+        <note [note]="noteFromParent" (emitter)="refreshNotes()"  ></note> 
+
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -10,6 +10,8 @@ import { NoteService } from 'src/app/services/note.service';
 export class NoteComponent implements OnInit {
 
   @Input() note: any
+
+  @Output() emitter = new EventEmitter()
 
   token: string = ""
 
@@ -25,7 +27,7 @@ export class NoteComponent implements OnInit {
       next: data => console.log(data.message),
       error: err => console.warn(err.error),
       complete: () => {
-        this._router.navigate(['/login'])
+        this.emitter.emit()
       }
     })
   }

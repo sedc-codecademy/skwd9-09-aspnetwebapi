@@ -35,7 +35,7 @@ namespace SEDC.Notes.WebApi.Controllers
                 _noteService.AddNote(requestModel);
 
                 Log.Information($"Note succesffuly created date: {DateTime.UtcNow}");
-                return Ok();
+                return Ok( new { message = "Note has been sucesfully created!" });
             }
             catch (UserException ex)
             {
@@ -119,7 +119,7 @@ namespace SEDC.Notes.WebApi.Controllers
             {
                 var userId = GetAuthorziedUserId();
                 _noteService.DeleteNoteById(userId, id);
-                return Ok();
+                return Ok( new { message = "Note succesfully deleted!" } );
             }
             catch (UserException ex)
             {
