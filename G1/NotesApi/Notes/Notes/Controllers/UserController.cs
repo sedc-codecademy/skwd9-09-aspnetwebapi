@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.NotesApp.Models;
 using SEDC.NotesApp.Services.Interface;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,11 @@ namespace SEDC.NotesApp.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-
+        //private readonly ILogger _log;
         public UserController(IUserService userService)
         {
             _userService = userService;
+            //_log = log;
         }
 
 
@@ -32,12 +34,14 @@ namespace SEDC.NotesApp.Api.Controllers
                 UserModel user = _userService.Authenticate(model.Username, model.Password);
                 if(user == null)
                 {
+                    Log.Information($"The user with username {model.Username} does not exsist in the DB!");
                     return NotFound("User does not exist!");
                 }
                 return Ok(user);
             }
-            catch 
+            catch (Exception ex)
             {
+                Log.Error(ex, $"Message: { ex.Message }");
                 return BadRequest("Username or password is incorrect!");
             }
         }

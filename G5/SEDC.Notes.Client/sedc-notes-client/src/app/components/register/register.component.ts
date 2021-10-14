@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterRequestModel } from 'src/app/models/auth.models';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -18,7 +19,8 @@ export class RegisterComponent {
     ConfirmPassword: new FormControl('', Validators.required),
   })
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, 
+              private _router: Router) {}
 
   
   onSubmit() {
@@ -31,13 +33,12 @@ export class RegisterComponent {
     let registerRequestModel = new RegisterRequestModel(usernameValue, password, confirmPassword, firstName, lastName);
 
     this._authService.register(registerRequestModel).subscribe({
+      next: data => console.log(data),
       error: err => {
         console.warn(err.error)
-        console.warn("error ocured")
       },
       complete: () => {
-        console.log("done")
-        // some redirect
+        this._router.navigate(["/login"])
       }
     })
 
