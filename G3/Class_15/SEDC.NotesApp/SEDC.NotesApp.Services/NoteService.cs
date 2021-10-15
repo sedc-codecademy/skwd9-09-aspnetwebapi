@@ -1,0 +1,71 @@
+﻿using AutoMapper;
+using SEDC.NotesApp.Models.DbModels;
+using SEDC.NotesApp.Models.DtoModels;
+using SEDC.NotesApp.Repositories;
+using SEDC.NotesApp.Services.Interfaces;
+using SEDC.NotesApp.Shared.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace SEDC.NotesApp.Services
+{
+    public class NoteService : INoteService
+    {
+        private readonly IRepository<Note> _noteRepo;
+        private readonly IMapper _mapper;
+        public NoteService(IRepository<Note> noteRepo, IMapper mapper)
+        {
+            _noteRepo = noteRepo;
+            _mapper = mapper;
+        }
+        public string AddNewNote(NoteDto note)
+        {
+            if (string.IsNullOrEmpty(note.NoteText) || string.IsNullOrEmpty(note.NoteColor))
+            {
+                throw new BadRequestException("text and color fields are required");
+            }
+            Note noteDb = _mapper.Map<NoteDto, Note>(note);
+            _noteRepo.Add(noteDb);
+            return "Note was created succesfully";
+        }
+
+        public List<NoteDto> GetAllNotes()
+        {
+            return _noteRepo.GetAll()
+                .Select(note => _mapper.Map<Note, NoteDto>(note)).ToList();
+        }
+
+        public List<NoteDto> GetAllUserNotes(int userId)
+        {
+            return _noteRepo.GetAll()
+                .Where(note => note.UserId == userId)
+                .Select(note => _mapper.Map<Note, NoteDto>(note))
+                .ToList();
+        }
+
+        public string RemoveNote(int noteId)
+        {
+            Note note = _noteRepo.GetById(noteId);
+            if (note == null)
+            {
+                throw new NoteExeption(noteId, 0, "No such note");
+            }
+            _noteRepo.Remove(noteId);
+            return "Note deleted succesfully";
+        }
+
+        public string UpdateNote(NoteDto note)
+        {
+            Note noteDb = _noteRepo.GetById(note.Id);
+            if (noteDb == null)
+            {
+                throw new NoteExeption(note.Id, note.UserId, "No such note");
+            }
+            Note mappedNote = _mapper.Map<NoteDto, Note>(note);
+            _noteRepo.Update(mappedNote);
+            return "Note updated succesfully";
+        }
+    }
+}

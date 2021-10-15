@@ -8,6 +8,7 @@ using SEDC.NoteApp2.Shared.Exceptions;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace SEDC.NoteApp2.API.Controllers
 {
@@ -36,6 +37,14 @@ namespace SEDC.NoteApp2.API.Controllers
         public ActionResult<List<NoteDto>> GetNoteUserById(int id)
         {
             List<NoteDto> note = _noteService.GetAllNotesByUserId(id);
+            return StatusCode(StatusCodes.Status200OK, note);
+        }
+
+        [HttpGet("foruser")]
+        public ActionResult<List<NoteDto>> GetNoteForUserById()
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            List<NoteDto> note = _noteService.GetAllNotesByUserId(userId);
             return StatusCode(StatusCodes.Status200OK, note);
         }
 

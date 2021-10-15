@@ -15,9 +15,9 @@ export class NoteService {
     private userService: UserService) { }
 
   GetNotesForUser(): Observable<NoteDto> {
-    const userId = 1; // For homework add API method to read this information from token
+    //const userId = 1; // For homework add API method to read this information from token
 
-    const path = environment.apiEndPoint + '/Note/user/' + userId;
+    const path = environment.apiEndPoint + '/Note/foruser';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
