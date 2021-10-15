@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SEDC.NotesApp.Api.Services;
 using SEDC.NotesApp.Services;
 using SEDC.NotesApp.Services.Helpers;
@@ -54,8 +55,41 @@ namespace SEDC.NotesApp.Api
                     ValidateAudience = false
                 };
             });
-               
 
+            services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using Bearer scheme"
+                });
+                options.AddSecurityDefinition("exampleAuth", new OpenApiSecurityScheme
+                {
+                    Name = "Example Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "example",
+                    In = ParameterLocation.Header,
+                    Description = "This is some example scheme"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                               Reference=new OpenApiReference
+                               {
+                                   Type=ReferenceType.SecurityScheme,
+                                   Id="bearerAuth"
+                               }
+                        },
+                        new string[]{}
+                    }
+                });
+            });
 
             DIModule.RegisterModule(services, connString);
 
@@ -72,6 +106,8 @@ namespace SEDC.NotesApp.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using SEDC.NotesApp.DataAccess;
 using SEDC.NotesApp.DataModels;
 using SEDC.NotesApp.Models;
+using SEDC.NotesApp.Services.CustomExceptions;
 using SEDC.NotesApp.Services.Helpers;
 using SEDC.NotesApp.Services.Helpers.Mappers;
 using SEDC.NotesApp.Services.Interface;
@@ -30,8 +31,14 @@ namespace SEDC.NotesApp.Services
         public UserModel Authenticate(string username, string password)
         {
             if (username == string.Empty || username.Length < 3)
-                throw new Exception("Username cannot be empty or below 3 characters!");
+            {
+                throw new UserException("Username cannot be empty or below 3 characters!");
+            }
 
+            if (!string.IsNullOrEmpty(password) || password.Length < 3)
+            {
+                throw new UserException("Password is empty or below 3 characters");
+            }
             var md5 = new MD5CryptoServiceProvider();
             var passwordData = md5.ComputeHash(Encoding.ASCII.GetBytes(password));
             var hashedPassword = Encoding.ASCII.GetString(passwordData);

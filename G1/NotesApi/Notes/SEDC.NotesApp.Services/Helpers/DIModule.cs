@@ -5,6 +5,7 @@ using SEDC.NotesApp.DataAccess.ADONET;
 using SEDC.NotesApp.DataAccess.Dapper;
 using SEDC.NotesApp.DataAccess.EntityFramework;
 using SEDC.NotesApp.DataModels;
+using SEDC.NotesApp.Services.Helpers.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +29,7 @@ namespace SEDC.NotesApp.Services.Helpers
             //Registering repository  - EntityFramework
             services.AddTransient<IRepository<Note>, NoteRepository>();
             services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddAutoMapper(typeof(NoteProfiles));
 
             return services;
         }

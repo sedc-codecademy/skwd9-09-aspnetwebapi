@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.NotesApp.Models;
+using SEDC.NotesApp.Services.CustomExceptions;
 using SEDC.NotesApp.Services.Interface;
 using Serilog;
 using System;
@@ -32,17 +33,17 @@ namespace SEDC.NotesApp.Api.Controllers
             try
             {
                 UserModel user = _userService.Authenticate(model.Username, model.Password);
-                if(user == null)
+                if (user == null)
                 {
                     Log.Information($"The user with username {model.Username} does not exsist in the DB!");
                     return NotFound("User does not exist!");
                 }
                 return Ok(user);
             }
-            catch (Exception ex)
+            catch (UserException ex)
             {
                 Log.Error(ex, $"Message: { ex.Message }");
-                return BadRequest("Username or password is incorrect!");
+                return BadRequest(ex.Message);
             }
         }
 
