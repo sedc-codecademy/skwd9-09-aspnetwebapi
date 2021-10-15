@@ -1,0 +1,28 @@
+10/14/2021 22:10:53 Apllication is Startign up
+10/14/2021 22:10:54 Now listening on: "http://localhost:5000"
+10/14/2021 22:10:54 Application started. Press Ctrl+C to shut down.
+10/14/2021 22:10:54 Hosting environment: "Development"
+10/14/2021 22:10:54 Content root path: "C:\Users\Manass\Desktop\class13\NotesApp"
+10/14/2021 22:10:54 Request starting HTTP/1.1 GET http://localhost:5000/api/notes  
+10/14/2021 22:10:55 Executing endpoint '"NotesApp.Controllers.NotesController.Get (NotesApp)"'
+10/14/2021 22:10:55 Route matched with "{action = \"Get\", controller = \"Notes\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[NotesApp.Models.Note]] Get()" on controller "NotesApp.Controllers.NotesController" ("NotesApp").
+10/14/2021 22:10:55 We got all notes
+10/14/2021 22:10:55 Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[NotesApp.Models.Note, NotesApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'.
+10/14/2021 22:10:55 Executed action "NotesApp.Controllers.NotesController.Get (NotesApp)" in 19.076ms
+10/14/2021 22:10:55 Executed endpoint '"NotesApp.Controllers.NotesController.Get (NotesApp)"'
+10/14/2021 22:10:55 HTTP "GET" "/api/notes" responded 200 in 102.1563 ms
+10/14/2021 22:10:55 Request finished in 116.4531ms 200 application/json; charset=utf-8
+10/14/2021 22:11:17 Apllication is Startign up
+10/14/2021 22:11:18 Now listening on: "http://localhost:5000"
+10/14/2021 22:11:18 Application started. Press Ctrl+C to shut down.
+10/14/2021 22:11:18 Hosting environment: "Development"
+10/14/2021 22:11:18 Content root path: "C:\Users\Manass\Desktop\class13\NotesApp"
+10/14/2021 22:11:18 Request starting HTTP/1.1 GET http://localhost:5000/api/notes  
+10/14/2021 22:11:18 Executing endpoint '"NotesApp.Controllers.NotesController.Get (NotesApp)"'
+10/14/2021 22:11:19 Route matched with "{action = \"Get\", controller = \"Notes\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[NotesApp.Models.Note]] Get()" on controller "NotesApp.Controllers.NotesController" ("NotesApp").
+10/14/2021 22:11:19 We got all notes
+10/14/2021 22:11:19 Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[NotesApp.Models.Note, NotesApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'.
+10/14/2021 22:11:19 Executed action "NotesApp.Controllers.NotesController.Get (NotesApp)" in 24.3715ms
+10/14/2021 22:11:19 Executed endpoint '"NotesApp.Controllers.NotesController.Get (NotesApp)"'
+10/14/2021 22:11:19 HTTP "GET" "/api/notes" responded 200 in 104.4871 ms
+10/14/2021 22:11:19 Request finished in 115.9815ms 200 application/json; charset=utf-8

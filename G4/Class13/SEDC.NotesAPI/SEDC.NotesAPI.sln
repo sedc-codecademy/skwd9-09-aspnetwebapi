@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI", "SEDC.NotesAPI\SEDC.NotesAPI.csproj", "{59C252B4-3914-43BD-A663-DC28F2277459}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.Domain", "SEDC.NotesAPI.Domain\SEDC.NotesAPI.Domain.csproj", "{B4823F8E-86B0-4382-A2A4-728B4E14F865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.DataAccess", "SEDC.NotesAPI.DataAccess\SEDC.NotesAPI.DataAccess.csproj", "{917A62D1-4D74-46CD-88C9-AAEBDD25AD96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.Helpers", "SEDC.NotesAPI.Helpers\SEDC.NotesAPI.Helpers.csproj", "{358A4F94-C31D-443F-99C2-C8DB8BB02CB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.Shared", "SEDC.NotesAPI.Shared\SEDC.NotesAPI.Shared.csproj", "{057346C4-8D67-4181-8091-A0E7F84FF118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.Models", "SEDC.NotesAPI.Models\SEDC.NotesAPI.Models.csproj", "{B4C558C7-A4E7-4D12-8859-4EB851BA597A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.Mappers", "SEDC.NotesAPI.Mappers\SEDC.NotesAPI.Mappers.csproj", "{D86D66CC-1758-465C-B831-C13A092E9C38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.NotesAPI.Services", "SEDC.NotesAPI.Services\SEDC.NotesAPI.Services.csproj", "{DB048C8A-F310-4B7B-AE31-E977D3FEB61A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59C252B4-3914-43BD-A663-DC28F2277459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C252B4-3914-43BD-A663-DC28F2277459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C252B4-3914-43BD-A663-DC28F2277459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C252B4-3914-43BD-A663-DC28F2277459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4823F8E-86B0-4382-A2A4-728B4E14F865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4823F8E-86B0-4382-A2A4-728B4E14F865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4823F8E-86B0-4382-A2A4-728B4E14F865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4823F8E-86B0-4382-A2A4-728B4E14F865}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917A62D1-4D74-46CD-88C9-AAEBDD25AD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917A62D1-4D74-46CD-88C9-AAEBDD25AD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917A62D1-4D74-46CD-88C9-AAEBDD25AD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917A62D1-4D74-46CD-88C9-AAEBDD25AD96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{358A4F94-C31D-443F-99C2-C8DB8BB02CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{358A4F94-C31D-443F-99C2-C8DB8BB02CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{358A4F94-C31D-443F-99C2-C8DB8BB02CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{358A4F94-C31D-443F-99C2-C8DB8BB02CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{057346C4-8D67-4181-8091-A0E7F84FF118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057346C4-8D67-4181-8091-A0E7F84FF118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057346C4-8D67-4181-8091-A0E7F84FF118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057346C4-8D67-4181-8091-A0E7F84FF118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C558C7-A4E7-4D12-8859-4EB851BA597A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C558C7-A4E7-4D12-8859-4EB851BA597A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C558C7-A4E7-4D12-8859-4EB851BA597A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C558C7-A4E7-4D12-8859-4EB851BA597A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D86D66CC-1758-465C-B831-C13A092E9C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D86D66CC-1758-465C-B831-C13A092E9C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D86D66CC-1758-465C-B831-C13A092E9C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D86D66CC-1758-465C-B831-C13A092E9C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB048C8A-F310-4B7B-AE31-E977D3FEB61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB048C8A-F310-4B7B-AE31-E977D3FEB61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB048C8A-F310-4B7B-AE31-E977D3FEB61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB048C8A-F310-4B7B-AE31-E977D3FEB61A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {023EB23F-ACD2-4362-AA3E-5E132FF73A11}
+	EndGlobalSection
+EndGlobal

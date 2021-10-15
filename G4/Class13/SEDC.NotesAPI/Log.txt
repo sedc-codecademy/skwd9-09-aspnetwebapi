@@ -1,0 +1,115 @@
+10/15/2021 17:49:51 Apllication is Startign up
+10/15/2021 17:49:52 User profile is available. Using '"C:\Users\Manass\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+10/15/2021 17:49:52 Now listening on: "http://localhost:5000"
+10/15/2021 17:49:52 Application started. Press Ctrl+C to shut down.
+10/15/2021 17:49:52 Hosting environment: "Development"
+10/15/2021 17:49:52 Content root path: "C:\Users\Manass\Desktop\class13\SEDC.NotesAPI\SEDC.NotesAPI"
+10/15/2021 17:49:53 Request starting HTTP/1.1 GET http://localhost:5000/api/notes  
+10/15/2021 17:49:53 Authorization failed.
+10/15/2021 17:49:53 AuthenticationScheme: "Bearer" was challenged.
+10/15/2021 17:49:53 HTTP "GET" "/api/notes" responded 401 in 111.1108 ms
+10/15/2021 17:49:53 Request finished in 138.3349ms 401 
+10/15/2021 17:50:20 Application is shutting down...
+10/15/2021 17:58:45 Apllication is Startign up
+10/15/2021 17:58:45 User profile is available. Using '"C:\Users\Manass\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+10/15/2021 17:58:45 Application started. Press Ctrl+C to shut down.
+10/15/2021 17:58:45 Hosting environment: "Development"
+10/15/2021 17:58:45 Content root path: "C:\Users\Manass\Desktop\class13\SEDC.NotesAPI\SEDC.NotesAPI"
+10/15/2021 17:58:45 Request starting HTTP/1.1 GET http://localhost:19794/api/notes  
+10/15/2021 17:58:45 Authorization failed.
+10/15/2021 17:58:45 AuthenticationScheme: "Bearer" was challenged.
+10/15/2021 17:58:45 HTTP "GET" "/api/notes" responded 401 in 87.3951 ms
+10/15/2021 17:58:45 Request finished in 111.2208ms 401 
+10/15/2021 17:58:54 Request starting HTTP/1.1 POST http://localhost:19794/api/users/login application/json 59
+10/15/2021 17:58:54 Executing endpoint '"SEDC.NotesAPI.Controllers.UsersController.Login (SEDC.NotesAPI)"'
+10/15/2021 17:58:54 Route matched with "{action = \"Login\", controller = \"Users\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[System.String] Login(SEDC.NotesAPI.Models.Users.LoginUserModel)" on controller "SEDC.NotesAPI.Controllers.UsersController" ("SEDC.NotesAPI").
+10/15/2021 17:58:55 Entity Framework Core "5.0.10" initialized '"NotesAppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+10/15/2021 17:58:55 Executed DbCommand ("29"ms) [Parameters=["@__ToLower_0='?' (Size = 50), @__password_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Address], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Username]
+FROM [Users] AS [u]
+WHERE (LOWER([u].[Username]) = @__ToLower_0) AND ([u].[Password] = @__password_1)"
+10/15/2021 17:58:56 Executing ObjectResult, writing value of type '"System.String"'.
+10/15/2021 17:58:56 Executed action "SEDC.NotesAPI.Controllers.UsersController.Login (SEDC.NotesAPI)" in 1242.6617ms
+10/15/2021 17:58:56 Executed endpoint '"SEDC.NotesAPI.Controllers.UsersController.Login (SEDC.NotesAPI)"'
+10/15/2021 17:58:56 HTTP "POST" "/api/users/login" responded 200 in 1281.5330 ms
+10/15/2021 17:58:56 Request finished in 1286.6108ms 200 text/plain; charset=utf-8
+10/15/2021 17:59:12 Request starting HTTP/1.1 GET http://localhost:19794/api/notes  
+10/15/2021 17:59:12 Successfully validated the token.
+10/15/2021 17:59:12 Authorization was successful.
+10/15/2021 17:59:12 Executing endpoint '"SEDC.NotesAPI.Controllers.NotesController.Get (SEDC.NotesAPI)"'
+10/15/2021 17:59:12 Route matched with "{action = \"Get\", controller = \"Notes\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[SEDC.NotesAPI.Models.Notes.NoteModel]] Get()" on controller "SEDC.NotesAPI.Controllers.NotesController" ("SEDC.NotesAPI").
+10/15/2021 17:59:12 Entity Framework Core "5.0.10" initialized '"NotesAppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+10/15/2021 17:59:12 Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[Color], [n].[Tag], [n].[Text], [n].[UserId], [u].[Id], [u].[Address], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Username]
+FROM [Notes] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[Id]"
+10/15/2021 17:59:12 NoteModel { Id: 1, Text: "Drink More Water", Color: "Red", Tag: Work, UserId: 1, UserFullName: "Panche Manaskov" }
+10/15/2021 17:59:12 NoteModel { Id: 2, Text: "Go to work", Color: "Red", Tag: Work, UserId: 1, UserFullName: "Panche Manaskov" }
+10/15/2021 17:59:12 NoteModel { Id: 3, Text: "Go to work", Color: "Red", Tag: Work, UserId: 2, UserFullName: "Bob Bobski" }
+10/15/2021 17:59:12 Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[SEDC.NotesAPI.Models.Notes.NoteModel, SEDC.NotesAPI.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'.
+10/15/2021 17:59:12 Executed action "SEDC.NotesAPI.Controllers.NotesController.Get (SEDC.NotesAPI)" in 120.8203ms
+10/15/2021 17:59:12 Executed endpoint '"SEDC.NotesAPI.Controllers.NotesController.Get (SEDC.NotesAPI)"'
+10/15/2021 17:59:12 HTTP "GET" "/api/notes" responded 200 in 169.9967 ms
+10/15/2021 17:59:12 Request finished in 171.6718ms 200 application/json; charset=utf-8
+10/15/2021 18:02:27 Request starting HTTP/1.1 GET http://localhost:19794/api/notes/1  
+10/15/2021 18:02:27 Successfully validated the token.
+10/15/2021 18:02:27 Authorization was successful.
+10/15/2021 18:02:27 Executing endpoint '"SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)"'
+10/15/2021 18:02:27 Route matched with "{action = \"GetById\", controller = \"Notes\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[SEDC.NotesAPI.Models.Notes.NoteModel] GetById(Int32)" on controller "SEDC.NotesAPI.Controllers.NotesController" ("SEDC.NotesAPI").
+10/15/2021 18:02:27 Entity Framework Core "5.0.10" initialized '"NotesAppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+10/15/2021 18:02:27 Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [n].[Id], [n].[Color], [n].[Tag], [n].[Text], [n].[UserId], [u].[Id], [u].[Address], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Username]
+FROM [Notes] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[Id]
+WHERE [n].[Id] = @__id_0"
+10/15/2021 18:02:27 We got the note with id 1 : NoteModel { Id: 1, Text: "Drink More Water", Color: "Red", Tag: Work, UserId: 1, UserFullName: "Panche Manaskov" }
+10/15/2021 18:02:27 Executing ObjectResult, writing value of type '"SEDC.NotesAPI.Models.Notes.NoteModel"'.
+10/15/2021 18:02:27 Executed action "SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)" in 21.5104ms
+10/15/2021 18:02:27 Executed endpoint '"SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)"'
+10/15/2021 18:02:27 HTTP "GET" "/api/notes/1" responded 200 in 26.4483 ms
+10/15/2021 18:02:27 Request finished in 27.9268ms 200 application/json; charset=utf-8
+10/15/2021 18:04:00 Request starting HTTP/1.1 GET http://localhost:19794/api/notes/7  
+10/15/2021 18:04:00 Successfully validated the token.
+10/15/2021 18:04:00 Authorization was successful.
+10/15/2021 18:04:00 Executing endpoint '"SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)"'
+10/15/2021 18:04:00 Route matched with "{action = \"GetById\", controller = \"Notes\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[SEDC.NotesAPI.Models.Notes.NoteModel] GetById(Int32)" on controller "SEDC.NotesAPI.Controllers.NotesController" ("SEDC.NotesAPI").
+10/15/2021 18:04:00 Entity Framework Core "5.0.10" initialized '"NotesAppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+10/15/2021 18:04:00 Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [n].[Id], [n].[Color], [n].[Tag], [n].[Text], [n].[UserId], [u].[Id], [u].[Address], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Username]
+FROM [Notes] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[Id]
+WHERE [n].[Id] = @__id_0"
+10/15/2021 18:04:00 "Note with id 7 was not found"
+10/15/2021 18:04:00 Executing ObjectResult, writing value of type '"System.String"'.
+10/15/2021 18:04:00 Executed action "SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)" in 38.449ms
+10/15/2021 18:04:00 Executed endpoint '"SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)"'
+10/15/2021 18:04:00 HTTP "GET" "/api/notes/7" responded 404 in 40.9643 ms
+10/15/2021 18:04:00 Request finished in 44.6173ms 404 text/plain; charset=utf-8
+10/15/2021 18:14:38 Apllication is Startign up
+10/15/2021 18:14:39 User profile is available. Using '"C:\Users\Manass\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+10/15/2021 18:14:39 Application started. Press Ctrl+C to shut down.
+10/15/2021 18:14:39 Hosting environment: "Development"
+10/15/2021 18:14:39 Content root path: "C:\Users\Manass\Desktop\class13\SEDC.NotesAPI\SEDC.NotesAPI"
+10/15/2021 18:14:39 Request starting HTTP/1.1 GET http://localhost:19794/api/notes  
+10/15/2021 18:14:39 Authorization failed.
+10/15/2021 18:14:39 AuthenticationScheme: "Bearer" was challenged.
+10/15/2021 18:14:39 HTTP "GET" "/api/notes" responded 401 in 87.7989 ms
+10/15/2021 18:14:39 Request finished in 110.2671ms 401 
+10/15/2021 18:15:03 Request starting HTTP/1.1 GET http://localhost:19794/api/notes/7  
+10/15/2021 18:15:03 Successfully validated the token.
+10/15/2021 18:15:03 Authorization was successful.
+10/15/2021 18:15:03 Executing endpoint '"SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)"'
+10/15/2021 18:15:04 Route matched with "{action = \"GetById\", controller = \"Notes\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult`1[SEDC.NotesAPI.Models.Notes.NoteModel] GetById(Int32)" on controller "SEDC.NotesAPI.Controllers.NotesController" ("SEDC.NotesAPI").
+10/15/2021 18:15:04 Entity Framework Core "5.0.10" initialized '"NotesAppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+10/15/2021 18:15:05 Executed DbCommand ("30"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [n].[Id], [n].[Color], [n].[Tag], [n].[Text], [n].[UserId], [u].[Id], [u].[Address], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Username]
+FROM [Notes] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[Id]
+WHERE [n].[Id] = @__id_0"
+10/15/2021 18:15:05 "Note with id 7 was not found" "SEDC.NotesAPI.Services" "   at SEDC.NotesAPI.Services.Implementations.NoteService.GetNoteById(Int32 id) in C:\Users\Manass\Desktop\class13\SEDC.NotesAPI\SEDC.NotesAPI.Services\Implementations\NoteService.cs:line 81
+   at SEDC.NotesAPI.Controllers.NotesController.GetById(Int32 id) in C:\Users\Manass\Desktop\class13\SEDC.NotesAPI\SEDC.NotesAPI\Controllers\NotesController.cs:line 53"
+10/15/2021 18:15:05 Executing ObjectResult, writing value of type '"System.String"'.
+10/15/2021 18:15:05 Executed action "SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)" in 1215.4849ms
+10/15/2021 18:15:05 Executed endpoint '"SEDC.NotesAPI.Controllers.NotesController.GetById (SEDC.NotesAPI)"'
+10/15/2021 18:15:05 HTTP "GET" "/api/notes/7" responded 404 in 1387.4265 ms
+10/15/2021 18:15:05 Request finished in 1391.8901ms 404 text/plain; charset=utf-8
